@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 
-char* va(char* format, ...);
+char* va(const char* format, ...);
 
 namespace RLE
 {

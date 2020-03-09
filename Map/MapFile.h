@@ -130,7 +130,7 @@ namespace Map
                 int sx= newx<width  ? newx : width;
                 int sy= newy<height ? newy : height;
 
-                T* temp = new T[x*y];
+                T* temp = new T[sx*sy];
 
                 for (int y = 0; y<sy; y++)
                 {

@@ -16,6 +16,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef IMAGE_INC
 #define IMAGE_INC
 
+#include "vtypes.h"
+
 extern int		Image_Width();
 extern int		Image_Length();
 
