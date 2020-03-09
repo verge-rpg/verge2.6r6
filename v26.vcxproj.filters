@@ -4,13 +4,76 @@
     <ClCompile Include="2xsai.cpp" />
     <ClCompile Include="a_memory.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="font.cpp" />
+    <ClCompile Include="graph.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="message.cpp" />
+    <ClCompile Include="misc.cpp" />
+    <ClCompile Include="movescript.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="render.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="startup.cpp" />
+    <ClCompile Include="tileanim.cpp" />
+    <ClCompile Include="timer.cpp" />
+    <ClCompile Include="vcstand.cpp" />
+    <ClCompile Include="verge.cpp" />
+    <ClCompile Include="vfile.cpp" />
+    <ClCompile Include="videofilter.cpp" />
+    <ClCompile Include="vsp.cpp" />
+    <ClCompile Include="vc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2xsai.h" />
     <ClInclude Include="a_memory.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="font.h" />
+    <ClInclude Include="graph.h" />
+    <ClInclude Include="hq3x.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="log.h" />
+    <ClInclude Include="message.h" />
+    <ClInclude Include="misc.h" />
+    <ClInclude Include="movescript.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SDL_config.h" />
+    <ClInclude Include="sincos.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="sprite.h" />
+    <ClInclude Include="tileanim.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="vcstand.h" />
+    <ClInclude Include="verge.h" />
+    <ClInclude Include="vfile.h" />
+    <ClInclude Include="video8.h" />
+    <ClInclude Include="videofilter.h" />
+    <ClInclude Include="vsp.h" />
+    <ClInclude Include="vtypes.h" />
+    <ClInclude Include="vc.h" />
+    <ClInclude Include="vccode.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2xSaImmx.asm" />
+    <None Include="hq2x16.asm" />
+    <None Include="hq2x32.asm" />
+    <None Include="hq3x16.asm" />
+    <None Include="hq3x32.asm" />
+    <None Include="hq4x16.asm" />
+    <None Include="hq4x32.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rsrc.rc" />
   </ItemGroup>
 </Project>

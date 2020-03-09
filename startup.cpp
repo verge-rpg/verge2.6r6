@@ -27,9 +27,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "misc.h"
 #include "videofilter.h"
 
-#ifdef WIN32
-#   include <windows.h>
-#endif
 
 // in VERGE.CPP
 int VMain();
@@ -349,7 +346,7 @@ int main(int argc, char* args[])
         startmap = args[1];
     else
     {
-        printf("VERGE v."VERSION" build "__DATE__" at "__TIME__". \n");
+        printf("VERGE v." VERSION " build " __DATE__ " at " __TIME__ ". \n");
         printf("Copyright (C)1998 vecna \n");
     }
 

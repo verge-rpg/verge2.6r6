@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef MAIN_H
 #define MAIN_H
 
-extern void* valloc(int amount, char* desc, int owner);
+#include "a_memory.h"
 
 extern void err(char* message);
 extern int  sgn(int x);

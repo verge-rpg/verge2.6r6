@@ -51,7 +51,7 @@ static int ohfuck   =0;
 
 // ***************************** Code *****************************
 
-void *valloc(int amount, char *desc, int owner)
+void *valloc(int amount, const char *desc, int owner)
 {
 	char*	ptr;
 

@@ -58,7 +58,7 @@ extern void vclose(VFILE* f);
 extern int filesize(VFILE* f);
 extern int vtell(VFILE* f);
 extern void vseek(VFILE* f, int offset, int origin);
-extern void vscanf(VFILE* f, char* format, char* dest);
+extern void vscanf(VFILE* f, const char* format, char* dest);
 extern char vgetc(VFILE* f);
 extern u16  vgetw(VFILE* f);
 extern u32  vgetq(VFILE* f);

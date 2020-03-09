@@ -246,7 +246,7 @@ void vseek(VFILE* f, int offset, int origin)
     }
 }
 
-void vscanf(VFILE* f, char* format, char* dest)
+void vscanf(VFILE* f, const char* format, char* dest)
 {
     fscanf(f->fp, format, dest);
     if (f->s)

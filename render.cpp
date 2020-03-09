@@ -314,7 +314,9 @@ void BlitLayer(int lay, bool trans)
 
 void DrawObstructions()
 {
-    RenderLayer(map->Obs(), MapFile::Layer<bool>::Iterator(map->Obs()), StippleBlit());
+  //MBG 09-mar-2020 - seems incomplete?
+    //RenderLayer(map->Obs(), MapFile::Layer<bool>::Iterator(map->Obs()), StippleBlit());
+
     /*	// the tile to be drawn in the upper left corner
     int xtile = xwin/16;
     int ytile = ywin/16;
