@@ -437,9 +437,6 @@
     <ClCompile Include="SDL\src\video\dummy\SDL_nullevents.c">
       <Filter>SDL\src\video\dummy</Filter>
     </ClCompile>
-    <ClCompile Include="audiere\cd_win32.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
     <ClCompile Include="audiere\debug.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
@@ -497,9 +494,6 @@
     <ClCompile Include="audiere\memory_file.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
-    <ClCompile Include="audiere\midi_mci.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
     <ClCompile Include="audiere\midi_null.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
@@ -521,16 +515,7 @@
     <ClCompile Include="audiere\square_wave.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
-    <ClCompile Include="audiere\threads_posix.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
     <ClCompile Include="audiere\threads_win32.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
-    <ClCompile Include="audiere\timer_ansi.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
-    <ClCompile Include="audiere\timer_posix.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
     <ClCompile Include="audiere\timer_win32.cpp">
@@ -550,6 +535,123 @@
     </ClCompile>
     <ClCompile Include="audiere\cd_null.cpp">
       <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\duhlen.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\duhtag.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\dumbfile.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\loadduh.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\makeduh.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\rawsig.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\readduh.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\register.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\rendduh.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\rendsig.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\unload.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\core\atexit.c">
+      <Filter>dumb\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\resample.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\sampbuf.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\silence.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\stdfile.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\clickrem.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\helpers\memfile.c">
+      <Filter>dumb\src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itread.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itread2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itrender.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itunload.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loadmod.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loadmod2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loads3m.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loads3m2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loadxm.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\loadxm2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\readmod.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\readmod2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\reads3m.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\reads3m2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\readxm.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\readxm2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\xmeffect.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itload.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itload2.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itmisc.c">
+      <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="dumb\src\it\itorder.c">
+      <Filter>dumb\src\it</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -836,6 +938,18 @@
     <ClInclude Include="audiere\basic_source.h">
       <Filter>audiere</Filter>
     </ClInclude>
+    <ClInclude Include="dumb\include\aldumb.h">
+      <Filter>dumb\include</Filter>
+    </ClInclude>
+    <ClInclude Include="dumb\include\dumb.h">
+      <Filter>dumb\include</Filter>
+    </ClInclude>
+    <ClInclude Include="dumb\include\internal\dumb.h">
+      <Filter>dumb\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="dumb\include\internal\it.h">
+      <Filter>dumb\include\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
@@ -922,10 +1036,37 @@
     <Filter Include="audiere">
       <UniqueIdentifier>{7c6608a8-5b33-4d07-8486-45d5651fd333}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dumb">
+      <UniqueIdentifier>{edae2539-528e-42ae-a1b2-b504dc531835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\include">
+      <UniqueIdentifier>{2ba65fee-1c2b-4b88-892d-3e5d60721274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\src">
+      <UniqueIdentifier>{06b8fd2d-38f3-4d5c-ad07-592c746d613b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\src\core">
+      <UniqueIdentifier>{1efd5bc6-d3ca-4c39-8cda-b7a4aaddfdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\src\helpers">
+      <UniqueIdentifier>{ad1cfc1c-1d17-4a45-ab25-3b930d0f9a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\src\it">
+      <UniqueIdentifier>{2cbab4bc-3fb8-4144-86c1-b5af0aaa9b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dumb\include\internal">
+      <UniqueIdentifier>{132283cc-797a-48fc-a44d-9c44f5517b06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="audiere\Makefile.am">
-      <Filter>audiere</Filter>
+    <None Include="dumb\src\helpers\resamp3.inc">
+      <Filter>dumb\src\helpers</Filter>
+    </None>
+    <None Include="dumb\src\helpers\resample.inc">
+      <Filter>dumb\src\helpers</Filter>
+    </None>
+    <None Include="dumb\src\helpers\resamp2.inc">
+      <Filter>dumb\src\helpers</Filter>
     </None>
   </ItemGroup>
 </Project>
