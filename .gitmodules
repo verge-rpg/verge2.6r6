@@ -1,0 +1,4 @@
+[submodule "SDL"]
+	path = SDL
+	url = https://github.com/verge-rpg/SDL.git
+	branch = SDL12_verge
