@@ -8,7 +8,7 @@ namespace
     {
         FILE*	f;
         
-        f = fopen("VERGE.LOG", "aw");
+        f = fopen("VERGE.LOG", "a");
         //    if (!f)
         //        Sys_Error("OpenLog: unable to open VERGE.LOG");
         
