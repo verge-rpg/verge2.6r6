@@ -108,7 +108,7 @@ GifFileType *DGifOpenFileHandle(int FileHandle)
     f = fdopen(FileHandle, "rb");           /* Make it into a stream: */
     setvbuf(f, NULL, _IOFBF, GIF_FILE_BUFFER_SIZE);/* And inc. stream buffer.*/
 #else
-    f = fdopen(FileHandle, "r");           /* Make it into a stream: */
+    f = _fdopen(FileHandle, "r");           /* Make it into a stream: */
 #endif /* __MSDOS__ */
 
     GifFile->Private = (VoidPtr) Private;
