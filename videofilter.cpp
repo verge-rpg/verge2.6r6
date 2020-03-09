@@ -62,6 +62,8 @@ void Filter8bpp::flip(u8* dest, uint destPitch)
     }
 }
 
+#ifdef VERGE_VIDEOFILTERS_ENABLED
+
 FilterKreed::FilterKreed()
     : _width(0)
     , _height(0)
@@ -148,3 +150,4 @@ void FilterHq4x::flip(u8* dest, uint destPitch)
     hq4x_32(_backBuffer.get(), dest, _width, _height, destPitch);
 }
 
+#endif

@@ -27,7 +27,7 @@ int sgn(int x)
 // String manupulation. (TODO: get rid of all this)     //
 //////////////////////////////////////////////////////////
 
-char* va(char* format, ...)
+char* va(const char* format, ...)
 {
     va_list argptr;
     static char str[1024];

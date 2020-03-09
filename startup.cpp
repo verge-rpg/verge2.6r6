@@ -187,6 +187,7 @@ void ParseStartupFiles()
         else if (lin[0] == "startmap")      startmap = lin[1];             // map VERGE.EXE will run first when executed
         else if (lin[0] == "hicolor")       config.hicolour = true;
         else if (lin[0] == "window")        config.window = true;
+#ifdef VERGE_VIDEOFILTERS_ENABLED
         else if (lin[0] == "filter")
         {
             std::string filter = lowerCase(lin[1]);
@@ -198,6 +199,7 @@ void ParseStartupFiles()
             else if (filter == "hq4x")      config.filter = new FilterHq4x();
             else Log::Write(va("Unknown video filter %s", filter.c_str()));
         }
+#endif
         else if (lin[0] == "vsync")         gfx.VSync(true);
         else if (lin[0] == "profile")       vcprofile = true;
         else if (lin[0] == "joystick")      config.joy = true,

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="2xsai.cpp" />
     <ClCompile Include="a_memory.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -24,19 +23,26 @@
     <ClCompile Include="vcstand.cpp" />
     <ClCompile Include="verge.cpp" />
     <ClCompile Include="vfile.cpp" />
-    <ClCompile Include="videofilter.cpp" />
     <ClCompile Include="vsp.cpp" />
     <ClCompile Include="vc.cpp" />
+    <ClCompile Include="Map\MapFile.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\LoadMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="VergeC\Event.cpp">
+      <Filter>VergeC</Filter>
+    </ClCompile>
+    <ClCompile Include="videofilter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="2xsai.h" />
     <ClInclude Include="a_memory.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="graph.h" />
-    <ClInclude Include="hq3x.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="keyboard.h" />
@@ -58,22 +64,38 @@
     <ClInclude Include="verge.h" />
     <ClInclude Include="vfile.h" />
     <ClInclude Include="video8.h" />
-    <ClInclude Include="videofilter.h" />
     <ClInclude Include="vsp.h" />
     <ClInclude Include="vtypes.h" />
     <ClInclude Include="vc.h" />
     <ClInclude Include="vccode.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="2xSaImmx.asm" />
-    <None Include="hq2x16.asm" />
-    <None Include="hq2x32.asm" />
-    <None Include="hq3x16.asm" />
-    <None Include="hq3x32.asm" />
-    <None Include="hq4x16.asm" />
-    <None Include="hq4x32.asm" />
+    <ClInclude Include="Map\MapFile.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\LoadMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\RefCount.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\RefPtr.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="VergeC\Event.h">
+      <Filter>VergeC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Map">
+      <UniqueIdentifier>{a98cceb7-589e-4688-9406-13343ff3bb26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{8edf2a90-d0c2-44de-a9fc-b4497b419c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VergeC">
+      <UniqueIdentifier>{917d1ae9-41b1-4781-b58c-7329a04d7a1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

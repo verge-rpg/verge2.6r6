@@ -55,8 +55,10 @@ bool GrDriver::Init(int x, int y, int c, bool fullscr, VideoFilter* filter)
     else
         Log::Write("MMX not detected");
 
+    #ifdef VERGE_VIDEOFILTERS_ENABLED
     extern bool mmx_cpu; // bleh.
     mmx_cpu = MMX; // tell the 2xSaI stuff.
+    #endif
     
     // bounds checking
     if (c != 8 && c != 16)  return false;   // TODO: 24/32bit support?
@@ -2777,52 +2779,6 @@ void GrDriver::PaletteMorph(int mr, int mg, int mb, int percent, int intensity)
 }
 
 bool IsMMX(void)
-/*
- * I didn't write this.  I got it from:
- * http://gamedev.net/reference/programming/features/mmxblend/
- * By John Hebert
- *
- *  --tSB
-*/
 {
-#if defined (WIN32) && defined(_MSVC)
-    SYSTEM_INFO si;
-    int nCPUFeatures = 0;
-    GetSystemInfo(&si);
-    if (si.dwProcessorType != PROCESSOR_INTEL_386 && si.dwProcessorType != PROCESSOR_INTEL_486)
-    {
-        try
-        {
-            __asm
-            {
-                // we must push/pop the registers << CPUID>>  writes to, as the
-                // optimiser doesn't know about << CPUID>> , and so doesn't expect
-                // these registers to change.
-                push eax
-                push ebx
-                push ecx
-                push edx
-                
-                // << CPUID>> 
-                // eax = 0, 1, 2 -> CPU info in eax, ebx, ecx, edx
-                mov eax, 1
-                _emit 0x0f
-                _emit 0xa2
-                mov nCPUFeatures, edx
-                
-                pop edx
-                pop ecx
-                pop ebx
-                pop eax
-            }
-        }
-        catch(...) // just to be sure...
-        {
-            return false;
-        }
-    }
-    return (nCPUFeatures & 0x00800000) != 0;
-#else
-    return false;
-#endif
+  return true;
 }
