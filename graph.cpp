@@ -88,6 +88,7 @@ bool GrDriver::SetMode(int x, int y, int c, bool fs)
 
     _filter->resize(x, y);
 
+    fs = false; //it's 2020, NEVER go fullscreen
     mainSurface = SDL_SetVideoMode(x * _filter->scale(), y * _filter->scale(), _filter->depth(), SDL_DOUBLEBUF | (fs ? SDL_FULLSCREEN : 0) | (_filter->depth() == 8 ? SDL_HWPALETTE : 0));
     
     if (!mainSurface)
