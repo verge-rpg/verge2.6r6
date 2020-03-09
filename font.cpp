@@ -13,15 +13,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-// ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-// ³                          The VERGE Engine                           ³
-// ³              Copyright (C)1998 BJ Eirich (aka vecna)                ³
-// ³                 Font Loading / Text Output module                   ³
-// ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+// /---------------------------------------------------------------------\
+// |                          The VERGE Engine                           |
+// |              Copyright (C)1998 BJ Eirich (aka vecna)                |
+// |                 Font Loading / Text Output module                   |
+// \---------------------------------------------------------------------/
 
 /*
 mod log:
 
+  <andy>
+  whenever        2002    Rewrote.
   <tSB>
   8   December    2000    Removed BIOS font crap.  Win2k doesn't like it.
   10  Nov         2000    Tweaks here and there for Windows port.
@@ -41,11 +43,11 @@ bool CFont::IsVacant() const
 void CFont::Clear()
 {
     delete[] pData;
-    pData=0;
+    pData = 0;
 }
 
 CFont::CFont()
-: pData(0),nSize(0)
+: pData(0), nSize(0)
 {}
 
 CFont::~CFont()
@@ -59,14 +61,14 @@ void CFont::SetSubSet(int subset)
 {
     if (subset<0 || subset>=nSubsets)
         return;
-    nCursubset=subset;
+    nCursubset = subset;
 }
 
-void CFont::PrintChar(char ch,const int x,const int y)
+void CFont::PrintChar(char ch, const int x, const int y)
 {
     // validate character range
     if (ch < 32 && ch >= 127)
-        ch=32;
+        ch = 32;
     
     // convert to font bay character offset
     int offset        = (nCursubset*96*nWidth*nHeight) + ((ch-32)*nWidth*nHeight);
@@ -75,9 +77,9 @@ void CFont::PrintChar(char ch,const int x,const int y)
     gfx.TCopySprite( x, y, nWidth, nHeight, pData + (offset*gfx.bpp) );
 }
 
-void CFont::Print(const char* zstr, int& x,int& y, int embed)
+void CFont::Print(const char* zstr, int& x, int& y, int embed)
 {
-    int startx=x;
+    int startx = x;
 
     while (*zstr)
     {
@@ -97,7 +99,7 @@ void CFont::Print(const char* zstr, int& x,int& y, int embed)
         {
             if (ch=='\t')
             {
-                const int xalign=64;
+                const int xalign = 64;
 
                 int chx = (x - xalign)/nWidth;
                 x += (4 - (chx % 4))*nWidth;
@@ -112,7 +114,7 @@ void CFont::Print(const char* zstr, int& x,int& y, int embed)
             }
         }
         
-        PrintChar(ch,x,y);
+        PrintChar(ch, x, y);
         x += nWidth;
     }
 }
@@ -154,6 +156,8 @@ bool CFont::LoadFromFile(const char* filename)
 {
     // set filename; stuff relies on this for error messages
     sFilename = filename;
+
+    Log::Write(va("Loading %s", filename));
     
     VFILE* f = vopen(sFilename.c_str());
     if (!f)        // failure
@@ -164,10 +168,10 @@ bool CFont::LoadFromFile(const char* filename)
     
     LoadHeader(f);                                      // get header info and setup some defaults -- ignore return value for now; f is gauranteed to exist anyway
     
-    int nSize=nSubsets*96*(nWidth*nHeight);             // get cumulative size of all subsets in this font & resize data to match
+    int nSize = nSubsets*96*(nWidth*nHeight);             // get cumulative size of all subsets in this font & resize data to match
     
     delete[] pData;
-    pData=new u8[nSize];
+    pData = new u8[nSize];
     
     vread(pData, nSize, f);
     
@@ -175,12 +179,12 @@ bool CFont::LoadFromFile(const char* filename)
     
     if (gfx.bpp>1)
     {
-        u8* p8bpp=pData;
+        u8* p8bpp = pData;
         
-        pData=new u8[nSize*2];
+        pData = new u8[nSize*2];
         
         u16* newptr = (u16*)pData;
-        for (unsigned int n = 0; n < nSize; n += 1)
+        for (int n = 0; n < nSize; n += 1)
         {
             newptr[n]
                 = (p8bpp[n])  ?  (gfx.Conv8( p8bpp[n] ))  :  gfx.trans_mask;
@@ -196,7 +200,7 @@ bool CFont::LoadFromFile(const char* filename)
 
 //----------------------------------------------------------------------
 
-static const int MAX_FONTS=10;
+static const int MAX_FONTS = 10;
 
 CFontController::CFontController()
 {
@@ -206,14 +210,14 @@ CFontController::CFontController()
 int CFontController::Load(const char* filename)
 {
     if (!filename)
-        return 0;
+        return -1;
     
-    for (int i=0; i<font.size(); i++)
+    for (unsigned int i = 0; i<font.size(); i++)
     {
         // if the font has already been loaded, then just return it, instead of loading a copy
 #ifdef WIN32
         // win32 isn't case sensitive about filenames
-        if (font[i].FileName().lower() == string_k(filename).lower())
+        if (lowerCase(font[i].FileName()) == lowerCase(filename))
 #else
         if (font[i].FileName() == filename)
 #endif
@@ -227,11 +231,11 @@ int CFontController::Load(const char* filename)
     }
     
     // no room
-    return 0;
+    return -1;
 }
 
 // accessors
-CFont& CFontController::operator[] (int slot) const
+CFont& CFontController::operator[] (uint slot) const
 {
     if (slot < 0 || slot >= font.size())    // invalid requests get the system font
         return (CFont&)font[0];
@@ -239,13 +243,16 @@ CFont& CFontController::operator[] (int slot) const
     return (CFont&)font[slot];                      // valid requests are fulfilled
 }
 
-void CFontController::GotoXY(int x,int y)
+void CFontController::GotoXY(int x, int y)
 {
-    nCurx=nAlignx=x;
-    nCury=y;
+    nCurx = nAlignx = x;
+    nCury = y;
 }
 
-void CFontController::PrintString(int subset,const char* msg)
+void CFontController::PrintString(int subset, const char* msg)
 {
-    font[subset].Print(msg,nCurx,nCury,true);
+    if (font[subset].IsVacant())
+        Sys_Error("Invalid font request (%i)", subset);
+
+    font[subset].Print(msg, nCurx, nCury, true);
 }

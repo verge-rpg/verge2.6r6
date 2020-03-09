@@ -1,0 +1,6 @@
+event
+{
+        //PlayMusic("Collective Soul - Compliment.ogg");
+        //PlayMusic("twilight.mp3");
+        SetPlayer(EntitySpawn(0,0,"bob.chr"));
+}

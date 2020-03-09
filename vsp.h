@@ -1,7 +1,12 @@
+/*
+ * Not too bad, though I'm less than happy with the way the loader is set up.
+ */
 
-#pragma once
+#ifndef VSP_H
+#define VSP_H
 
 #include "vtypes.h"
+#include "Util/RefCount.h"
 #include <vector>
 
 class GrDriver;     // graph.h
@@ -18,79 +23,42 @@ namespace VSP
 
     struct AnimStrand
     {
-        int first;
-        int last;
-        int delay;
+        uint first;
+        uint last;
+        uint delay;
         AnimMode mode;
     };
-        
-    class VSP
+
+    class VSP : public RefCount
     {
-        bool valid;
+        int  bpp;   // bytes per pixel.  1 or 2.
+        uint numtiles;
+
+        u8*  palette;
+        u8*  pixeldata;
+        std::vector<AnimStrand> anim;
+
     public:
 
-        virtual void* GetTile(int idx)=0;
-        virtual void* GetPal()=0;
-        virtual int NumTiles()=0;
+        //--
+        static VSP* LoadRaw(GrDriver& g, const char* filename); // loads the VSP as it is.
+        static VSP* Load(GrDriver& g, const char* filename); // Loads the VSP and converts it to the proper bitdepth if necessary
+        //--
 
-        virtual AnimStrand& GetAnim(int idx)=0;
+        VSP();
+        virtual ~VSP();
 
-        static VSP* LoadVSP(GrDriver& g,const char* filename);
+        void* GetTile(uint idx);
+        void* GetPal();
+        uint NumTiles();
+
+        AnimStrand& GetAnim(int idx);
+		inline int NumTileAnim() const { return 100; }  // purely to allow for expansion.
 
         // just for niceness:
         inline int Width()  const { return 16; }
         inline int Height() const { return 16; }
-
-        // so things can derive and be happy
-        virtual ~VSP() {}
     };
-
-    // A 8bpp representation of a tileset.
-    class VSP8 : public VSP
-    {
-        u8* palette;
-        u8* pixeldata;
-        int numtiles;
-
-        std::vector<AnimStrand> anim;
-
-        VSP8() : palette(0),pixeldata(0),numtiles(0){}
-
-    public:
-
-        virtual void* GetTile(int idx);
-        virtual void* GetPal();
-        virtual int NumTiles();
-
-        virtual AnimStrand& GetAnim(int idx);
-
-        static VSP8* Load(GrDriver& gfx,const char* fname);
-
-        virtual ~VSP8();
-    };
-
-    // A 16bpp representation of a tileset.
-    class VSP16 : public VSP
-    {
-        u16* pixeldata;
-        u8*  palette;
-        int numtiles;
-
-        std::vector<AnimStrand> anim;
-
-        VSP16() : pixeldata(0),palette(0),numtiles(0){}
-
-    public:
-
-        virtual void* GetTile(int idx);
-        virtual void* GetPal(); // returns 0 if the palette isn't a converted 256 colour pal
-        virtual int NumTiles();
-
-        virtual AnimStrand& GetAnim(int idx);
-
-        static VSP16* Load(GrDriver& gfx,const char* fname);
-        
-        virtual ~VSP16();
-    };
-
 };
+
+#endif

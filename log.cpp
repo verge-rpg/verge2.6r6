@@ -2,13 +2,13 @@
 
 namespace
 {
-    bool logging=false;
+    bool logging = false;
 
     FILE* OpenLog()
     {
         FILE*	f;
         
-        f=fopen("VERGE.LOG", "aw");
+        f = fopen("VERGE.LOG", "aw");
         //    if (!f)
         //        Sys_Error("OpenLog: unable to open VERGE.LOG");
         
@@ -22,7 +22,7 @@ namespace Log
     
     void Enable()
     {
-        logging=true;
+        logging = true;
     }
     
     void Init()
@@ -38,12 +38,12 @@ namespace Log
     {
         FILE*	f;
         
-        printf("%s\n",message);
+        printf("%s\n", message);
         
         if (!logging)
             return;
         
-        f=OpenLog();
+        f = OpenLog();
         
         //    if (!f) Sys_Error("Error logging!");
         
@@ -57,12 +57,12 @@ namespace Log
     {
         FILE*	f;
         
-        printf("%s",message);
+        printf("%s", message);
         
         if (!logging)
             return;
         
-        f=OpenLog();
+        f = OpenLog();
         
         //    if (!f) Sys_Error("Error logging!");
         

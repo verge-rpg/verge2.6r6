@@ -13,418 +13,494 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-// ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-// ³                          The VERGE Engine                           ³
-// ³              Copyright (C)1998 BJ Eirich (aka vecna)                ³
-// ³                          Rendering module                           ³
-// ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+// /---------------------------------------------------------------------\
+// |                          The VERGE Engine                           |
+// |              Copyright (C)1998 BJ Eirich (aka vecna)                |
+// |                          Rendering module                           |
+// \---------------------------------------------------------------------/
 
 #include "verge.h"
 #include "misc.h"
+#include "tileanim.h"
+#include "engine.h"
+#include "Map/MapFile.h"
+#include "vsp.h"
+#include "Console.h"
 #include <math.h>
 #include <algorithm>
+
+using Map::MapFile;
 
 // INTERFACE DATA //////////////////////////////////////////////////////////////////////////////////
 
 unsigned char	animate		= 0;
 unsigned char	cameratracking	= 1;
-unsigned char	tracker		= 0;
-unsigned char	showobs		= 0;
+int	tracker		= 0;
+unsigned char	showobs		= 1;
 unsigned char	showzone	= 0;
-
-// IMPLEMENTATION DATA /////////////////////////////////////////////////////////////////////////////
-
-static u8 curlayer = 0;
 
 // IMPLEMENTATION CODE /////////////////////////////////////////////////////////////////////////////
 
 // -------------------------- Map ----------------------------
 
+/*
 template <typename T>
-void Map_BlitLayer(int lay,T DrawTile)
+void RenderLayer(int lay, T DrawTile)
 {
     int		c;
-	int		x;
-	int		y;
-	int		x_sub;
-	int		y_sub;
-	int		clip_width;
-	int		clip_length;
-	unsigned short*	source;
+    int		x;
+    int		y;
+    int		x_sub;
+    int		y_sub;
+    int		clip_width;
+    int		clip_length;
+    unsigned short*	source;
 
-// validate arguments
-	if (lay < 0 || lay >= numlayers)
-		return;
+    // validate arguments
+    if (lay < 0 || lay >= numlayers)
+        return;
 
-// is this layer visible?
-	if (!layertoggle[lay])
-		return;
+    // is this layer visible?
+    if (!layertoggle[lay])
+        return;
 
-// adjust view according to parallax
-	x = xwin*layer[lay].pmultx/layer[lay].pdivx;
-	y = ywin*layer[lay].pmulty/layer[lay].pdivy;
+    // adjust view according to parallax
+    x = xwin*layer[lay].pmultx/layer[lay].pdivx;
+    y = ywin*layer[lay].pmulty/layer[lay].pdivy;
 
-// make my life easier; don't allow scrolling past map edges
-	if (x < 0)
-		x = 0;
-	if (y < 0)
-		y = 0;
+    // make my life easier; don't allow scrolling past map edges
+    if (x < 0)
+        x = 0;
+    if (y < 0)
+        y = 0;
 
-// get subtile position while we still have pixel precision
-	x_sub = -(x & 15);
-	y_sub = -(y & 15);
-// determine upper left tile coords of camera
-	x >>= 4;
-	y >>= 4;
+    // get subtile position while we still have pixel precision
+    x_sub = -(x & 15);
+    y_sub = -(y & 15);
+    // determine upper left tile coords of camera
+    x >>= 4;
+    y >>= 4;
 
-// calculate tiled rows and columns
-	clip_width = (gfx.scrx + 31)/16;
-	clip_length = (gfx.scry + 31)/16;
+    // calculate tiled rows and columns
+    clip_width = (gfx.scrx + 31)/16;
+    clip_length = (gfx.scry + 31)/16;
 
-// safeguard; this should never happen due to camera bounding
-// ie. if a map is set as visible, there should be something to draw at all times
-	if (x + clip_width - 1 < 0	|| x >= layer[lay].sizex
-	||	y + clip_length - 1 < 0	|| y >= layer[lay].sizey)
-	{
-		return;
-	}
+    // safeguard; this should never happen due to camera bounding
+    // ie. if a map is set as visible, there should be something to draw at all times
+    if (x + clip_width - 1 < 0	|| x >= layer[lay].sizex
+        ||	y + clip_length - 1 < 0	|| y >= layer[lay].sizey)
+    {
+        return;
+    }
 
-// clip upper left
-	if (x + clip_width - 1 >= layer[lay].sizex)
-		clip_width = layer[lay].sizex - x;
-	if (y + clip_length - 1 >= layer[lay].sizey)
-		clip_length = layer[lay].sizey - y;
+    // clip upper left
+    if (x + clip_width - 1 >= layer[lay].sizex)
+        clip_width = layer[lay].sizex - x;
+    if (y + clip_length - 1 >= layer[lay].sizey)
+        clip_length = layer[lay].sizey - y;
 
-// clip lower right
-	if (x < 0)
-	{
-		clip_width += x;
-		x = 0;
-	}
-	if (y < 0)
-	{
-		clip_length += y;
-		y = 0;
-	}
+    // clip lower right
+    if (x < 0)
+    {
+        clip_width += x;
+        x = 0;
+    }
+    if (y < 0)
+    {
+        clip_length += y;
+        y = 0;
+    }
 
-	source = layers[lay] + y*layer[lay].sizex + x;
-	y = y_sub;
-	do
-	{
-		y_sub = x_sub; // don't try this at home
-		x = clip_width;
-		do
-		{
-		// validate tile request
-			c = *source;
-			//if (c < 0 || c >= vsp->NumTiles())
-			//	c = 0;
-		    // validate it again
-			//c = tileidx[c];
+    source = layers[lay] + y*layer[lay].sizex + x;
+    y = y_sub;
+    do
+    {
+        y_sub = x_sub; // don't try this at home
+        x = clip_width;
+        do
+        {
+            // validate tile request
+            c = *source;
+            if (c < 0 || c >= vsp->NumTiles())
+                c = 0;
+            // validate it again
+            c = tileanim.GetTileIdx(c);
             if (c >= 0 && c < vsp->NumTiles())
             {
-                DrawTile(y_sub,y,c);
+                DrawTile(y_sub, y, c);
             }
-			source += 1;
-			x -= 1;
-			y_sub += 16;	// x screen position
-		}
-		while (x);
-		source += (layer[lay].sizex - clip_width);
-		y += 16;
-		clip_length -= 1;
-	}
-	while (clip_length);
+            source += 1;
+            x -= 1;
+            y_sub += 16;	// x screen position
+        }
+        while (x);
+        source += (layer[lay].sizex - clip_width);
+        y += 16;
+        clip_length -= 1;
+    }
+    while (clip_length);
+}*/
+
+template <class T>
+void RenderLayer(MapFile::TileLayer& l, T DrawTile)
+{
+    const int xmax = l.Width()*16-gfx.XRes();
+    const int ymax = l.Height()*16-gfx.YRes();
+
+    int xw=(int)(xwin*l.parx);
+    int yw=(int)(ywin*l.pary);
+
+    if (xw>=xmax) xw = xmax-1;
+    if (yw>=ymax) yw = ymax-1;
+    if (xw<0) xw = 0;
+    if (yw<0) yw = 0;
+
+    // the tile to be drawn in the upper left corner
+    int xtile = xw/16;
+    int ytile = yw/16;
+
+    // Subtile adjustment for each tile
+    int xadj=-(xw&15);
+    int yadj=-(yw&15);
+
+    // Number of tiles to blit (on each axis)
+    int xlen=(gfx.XRes()+16)/16;	// round up
+    int ylen=(gfx.YRes()+16)/16;
+
+    // Clipping
+    if (xtile+xlen>l.Width())   xlen = l.Width() -xtile;
+    if (ytile+ylen>l.Height())  ylen = l.Height()-ytile;
+
+    // current drawing location
+    int curx = xadj;
+    int cury = yadj;
+
+    MapFile::TileLayer::Iterator iter(l);
+
+    for (int y = 0; y<ylen; y++)
+    {
+        iter.MoveTo(xtile, y+ytile);
+
+        for (int x = xlen; x; x--)
+        {
+            u32 t=*iter;
+
+            // animation
+            t = tileanim.GetTileIdx(t);
+
+            if (t>=0 && t<vsp->NumTiles())
+                DrawTile(curx, cury, t);
+
+            iter++;
+            curx+=16;
+        }
+
+        curx = xadj;
+        cury+=16;
+    }
 }
 
 namespace
 {
+    // Decorator pattern
+    template <class _Iter, typename T>
+    class AnimIter
+    {
+        _Iter iter;
+    public:
+        AnimIter(_Iter i) : iter(i){}
+
+        inline AnimIter& operator ++(int)
+        {
+            iter++;
+        }
+
+        inline T& operator *()
+        {
+            T t=*iter;
+            return tileanim.GetTileIdx(t);
+        }
+
+        void MoveTo(int x, int y)
+        {
+            iter.MoveTo(x, y);
+        }
+    };
+
+    class GetObs
+    {
+    public:
+        inline int operator ()(int x, int y)
+        {
+            return map->Obs().Get(x, y);
+        }
+    };
+
+    class GetZone
+    {
+    public:
+        inline int operator ()(int x, int y)
+        {
+            return map->Zone().Get(x, y);
+        }
+    };
+
     class OpaqueBlit
     {
     public:
-        inline void operator ()(int x,int y,int t)
+        inline void operator ()(int x, int y, int t)
         {
-            gfx.CopySprite(x,y,16,16,(u8*)vsp->GetTile(t));
+            gfx.CopySprite(x, y, 16, 16, (u8*)vsp->GetTile(t));
         }
     };
-    
+
     class TransparentBlit
     {
     public:
-        inline void operator ()(int x,int y,int t)
+        inline void operator ()(int x, int y, int t)
         {
             if (t)
-                gfx.TCopySprite(x,y,16,16,(u8*)vsp->GetTile(t));
+                gfx.TCopySprite(x, y, 16, 16, (u8*)vsp->GetTile(t));
         }
     };
-    
+
     class LucentBlit
     {
         int mode;
     public:
         LucentBlit(int m) : mode(m) {}
-        
-        inline void operator ()(int x,int y,int t)
+
+        inline void operator ()(int x, int y, int t)
         {
             if (t)
-                gfx.TCopySpriteLucent(x,y,16,16,(u8*)vsp->GetTile(t),mode);
+                gfx.TCopySpriteLucent(x, y, 16, 16, (u8*)vsp->GetTile(t), mode);
+        }
+    };
+
+    class StippleBlit
+    {
+    public:
+        inline void operator ()(int x, int y, int t)
+        {
+            if (t)
+                gfx.BlitStipple(x, y, t);
         }
     };
 };
 
-void BlitLayer(int lay)
+void BlitLayer(int lay, bool trans)
 {
-	if (lay < 0 || lay >= numlayers)
-		return;
+    if (lay < 0 || lay >= map->NumLayers())
+        return;
 
-// hline takes precedence
-	if (layer[lay].hline)
-	{
-		ExecuteEvent(layer[lay].hline);
-	}
-// solid / mask / color_mapped are backseat
-	else
-	{
-        if (lay==0)
-        {
-            Map_BlitLayer(lay,OpaqueBlit());
-            return;
-        }
-        
-        if (layer[lay].trans)
-        {
-            Map_BlitLayer(lay,LucentBlit(layer[lay].trans));
-            return;
-        }
+    // hline takes precedence
+    /*	if (layer[lay].hline)
+    {
+    ExecuteEvent(layer[lay].hline);
+    }
+    // solid / mask / color_mapped are backseat
+    else*/
+    {
+        MapFile::TileLayer& layer = map->GetLayer(lay);
 
-        Map_BlitLayer(lay,TransparentBlit());
-	}
+        if (!trans)
+            RenderLayer(layer, OpaqueBlit());
+        else if (layer.trans != 0)
+            RenderLayer(layer, LucentBlit(layer.trans));
+        else
+            RenderLayer(layer, TransparentBlit());
+    }
 }
 
 void DrawObstructions()
 {
-	int		x;
-	int		y;
-	int		x_sub;
-	int		y_sub;
-	int		clip_width;
-	int		clip_length;
-	unsigned char*	source;
+    RenderLayer(map->Obs(), MapFile::Layer<bool>::Iterator(map->Obs()), StippleBlit());
+    /*	// the tile to be drawn in the upper left corner
+    int xtile = xwin/16;
+    int ytile = ywin/16;
 
-// debugging for now
-//	if (gfx.bpp>1) return;
+    // Subtile adjustment for each tile
+    int xadj=-(xwin&15);
+    int yadj=-(ywin&15);
 
-// adjust view according to parallax
-	x = xwin*layer[0].pmultx/layer[0].pdivx;
-	y = ywin*layer[0].pmulty/layer[0].pdivy;
+    // Number of tiles to blit (on each axis)
+    int xlen=(gfx.XRes()+16)/16;	// round up
+    int ylen=(gfx.YRes()+16)/16;
 
-// make my life easier; don't allow scrolling past map edges
-	if (x < 0)
-		x = 0;
-	if (y < 0)
-		y = 0;
+    // current drawing location
+    int curx = xadj;
+    int cury = yadj;
 
-// get subtile position while we still have pixel precision
-	x_sub = -(x & 15);
-	y_sub = -(y & 15);
-// determine upper left tile coords of camera
-	x >>= 4;
-	y >>= 4;
+    MapFile::Layer<bool>::Iterator iter(map->Obs(), xtile, ytile);
 
-// calculate tiled rows and columns
-	clip_width = (gfx.scrx + 31)/16;
-	clip_length = (gfx.scry + 31)/16;
+    for (int y = 0; y<ylen; y++)
+    {
+    for (int x = xlen; x; x--)
+    {
+    bool t=*iter;
 
-// safeguard; this should never happen due to camera bounding
-// ie. if a map is set as visible, there should be something to draw at all times
-	if (x + clip_width - 1 < 0	|| x >= layer[0].sizex
-	||	y + clip_length - 1 < 0	|| y >= layer[0].sizey)
-	{
-		return;
-	}
+    if (t!=0)
+    gfx.BlitStipple(curx, cury, 0);
 
-// clip upper left
-	if (x + clip_width - 1 >= layer[0].sizex)
-		clip_width = layer[0].sizex - x;
-	if (y + clip_length - 1 >= layer[0].sizey)
-		clip_length = layer[0].sizey - y;
+    iter++;
+    curx+=16;
+    }
 
-// clip lower right
-	if (x < 0)
-	{
-		clip_width += x;
-		x = 0;
-	}
-	if (y < 0)
-	{
-		clip_length += y;
-		y = 0;
-	}
-
-	source = obstruct + y*layer[0].sizex + x;
-	y = y_sub;
-	do
-	{
-		y_sub = x_sub; // don't try this at home
-		x = clip_width;
-
-        do
-		{
-			if (*source)
-				gfx.BlitStipple(y_sub, y, *source);
-
-			source += 1;
-			x -= 1;
-			y_sub += 16;	// x screen position
-		}
-		while (x);
-
-		source += (layer[0].sizex - clip_width);
-		y += 16;
-		clip_length -= 1;
-	}
-	while (clip_length);
+    curx = xadj;
+    cury+=16;
+    iter.MoveTo(xtile, y+ytile);
+    }*/
 }
 
 void DrawZones()
 {
-	int		x;
-	int		y;
-	int		x_sub;
-	int		y_sub;
-	int		temp;
-	int		clip_width;
-	int		clip_length;
-	unsigned char*	source;
+    /*	int		x;
+    int		y;
+    int		x_sub;
+    int		y_sub;
+    int		temp;
+    int		clip_width;
+    int		clip_length;
+    unsigned char*	source;
 
-// debugging for now
-//	if (gfx.bpp>1) return;
+    // debugging for now
+    //	if (gfx.bpp>1) return;
 
-// adjust view according to parallax
-	x = xwin*layer[0].pmultx/layer[0].pdivx;
-	y = ywin*layer[0].pmulty/layer[0].pdivy;
+    // adjust view according to parallax (NO NO PARALLAX NOT HERE)
+    x = xwin;
+    y = ywin;
 
-// make my life easier; don't allow scrolling past map edges
-	if (x < 0)
-		x = 0;
-	if (y < 0)
-		y = 0;
+    // make my life easier; don't allow scrolling past map edges
+    if (x < 0)
+    x = 0;
+    if (y < 0)
+    y = 0;
 
-// get subtile position while we still have pixel precision
-	x_sub = -(x & 15);
-	y_sub = -(y & 15);
-// determine upper left tile coords of camera
-	x >>= 4;
-	y >>= 4;
+    // get subtile position while we still have pixel precision
+    x_sub = -(x & 15);
+    y_sub = -(y & 15);
+    // determine upper left tile coords of camera
+    x >>= 4;
+    y >>= 4;
 
-// calculate tiled rows and columns
-	clip_width = (gfx.XRes() + 31)/16;
-	clip_length = (gfx.YRes() + 31)/16;
+    // calculate tiled rows and columns
+    clip_width = (gfx.XRes() + 31)/16;
+    clip_length = (gfx.YRes() + 31)/16;
 
-// safeguard; this should never happen due to camera bounding
-// ie. if a map is set as visible, there should be something to draw at all times
-	if (x + clip_width - 1 < 0	|| x >= layer[0].sizex
-	||	y + clip_length - 1 < 0	|| y >= layer[0].sizey)
-	{
-		return;
-	}
+    // safeguard; this should never happen due to camera bounding
+    // ie. if a map is set as visible, there should be something to draw at all times
+    if (x + clip_width - 1 < 0	|| x >= map->Width()
+    ||	y + clip_length - 1 < 0	|| y >= map->Height())
+    {
+    return;
+    }
 
-// clip upper left
-	if (x + clip_width - 1 >= layer[0].sizex)
-		clip_width = layer[0].sizex - x;
-	if (y + clip_length - 1 >= layer[0].sizey)
-		clip_length = layer[0].sizey - y;
+    // clip upper left
+    if (x + clip_width - 1 >= map->Width())
+    clip_width = map->Width() - x;
+    if (y + clip_length - 1 >= map->Height())
+    clip_length = map->Height() - y;
 
-// clip lower right
-	if (x < 0)
-	{
-		clip_width += x;
-		x = 0;
-	}
-	if (y < 0)
-	{
-		clip_length += y;
-		y = 0;
-	}
+    // clip lower right
+    if (x < 0)
+    {
+    clip_width += x;
+    x = 0;
+    }
+    if (y < 0)
+    {
+    clip_length += y;
+    y = 0;
+    }
 
-	source = zone + y*layer[0].sizex + x;
-	y = y_sub;
-	do
-	{
-		y_sub = x_sub; // don't try this at home
-		x = clip_width;
+    source = zone + y*map->Width() + x;
+    y = y_sub;
+    do
+    {
+    y_sub = x_sub; // don't try this at home
+    x = clip_width;
 
-		do
-		{
-			if (*source)
-				gfx.BlitStipple(y_sub, y, *source);
+    do
+    {
+    if (*source)
+    gfx.BlitStipple(y_sub, y, *source);
 
-			source += 1;
-			x -= 1;
-			y_sub += 16;	// x screen position
-		}
-		while (x);
+    source += 1;
+    x -= 1;
+    y_sub += 16;	// x screen position
+    }
+    while (x);
 
-        source += (layer[0].sizex - clip_width);
-		y += 16;
-		clip_length -= 1;
-	}
-	while (clip_length);
+    source += (map->Width() - clip_width);
+    y += 16;
+    clip_length -= 1;
+    }
+    while (clip_length);
 
-	for (temp = 0; temp < entities; temp++)
-	{
-		x = ents[temp].x - xwin;
-		y = ents[temp].y - ywin;
-		gfx.BlitStipple(x, y, 32);
-	}
+    for (temp = 0; temp < entities; temp++)
+    {
+    x = ents[temp].x - xwin;
+    y = ents[temp].y - ywin;
+    gfx.BlitStipple(x, y, 32);
+    }*/
 }
 
-void HookScriptThing(int &rpos)
+void HookScriptThing(unsigned int &rpos)
 {
-    int mark=rpos+1;
-	while (
-        rpos<rstring.length() &&
-	    ('X' != rstring[rpos] && 'x' != rstring[rpos])
+    int mark = rpos+1;
+    while (
+        rpos < map->rstring.length() &&
+        ('X' != map->rstring[rpos] && 'x' != map->rstring[rpos])
         )
-	{
-		rpos++;
-	}
-	
-    int ev=atoi(rstring.mid(mark,rpos-mark).c_str());
-	ExecuteEvent(ev);
+    {
+        rpos++;
+    }
+
+    int ev = atoi(map->rstring.substr(mark, rpos - mark).c_str());
+    ExecuteEvent(ev);
 }
 
 
 void CameraFocusOn(Entity* focus)
 {
-	if (!focus)
-		return;
+    if (!focus)
+        return;
 
     xwin = focus->x - gfx.scrx/2;
     ywin = focus->y - gfx.scry/2;
 
     // in case the map is smaller than the screen
-    const int maxx = layer[0].sizex*16 - gfx.scrx;
-    const int maxy = layer[0].sizey*16 - gfx.scry;
-    if (xwin>maxx)  xwin=maxx;
-    if (ywin>maxy)  ywin=maxy;
-    if (xwin<0)     xwin=0;
-    if (ywin<0)     ywin=0;
+    const int maxx = map->Width()*16 - gfx.scrx;
+    const int maxy = map->Height()*16 - gfx.scry;
+    if (xwin>maxx)  xwin = maxx;
+    if (ywin>maxy)  ywin = maxy;
+    if (xwin<0)     xwin = 0;
+    if (ywin<0)     ywin = 0;
 }
 
 void DoCameraTracking()
 {
-	Entity*	focus;
+    Entity*	focus;
 
-// there's 3 basic camera tracking modes:
-//		#1	focus on player
-//		#2	focus on specific entity; could be anyone
-//		#?	anything else disables camera tracking
+    // there's 3 basic camera tracking modes:
+    //		#1	focus on player
+    //		#2	focus on specific entity; could be anyone
+    //		#?	anything else disables camera tracking
 
     switch (cameratracking)
     {
-    case 1: focus=&ents[playeridx]; break;
-    case 2: focus=&ents[tracker];   break;
+    case 1:
+        if (playeridx != -1)
+            focus=&ents[playeridx];
+        else
+            return;
+        break;
+    case 2:
+        if (tracker != -1)
+            focus = &ents[tracker];
+        else
+            return;
+        break;
     default:
         return;
     }
@@ -434,115 +510,40 @@ void DoCameraTracking()
 
 int rnd(int lo, int hi)
 {
-	hi = hi - lo + 1;
+    hi = hi - lo + 1;
 
-	if (hi > 0)
-		hi = rand() % hi;
-	else
-		hi = 0;
+    if (hi > 0)
+        hi = rand() % hi;
+    else
+        hi = 0;
 
-	return lo + hi;
-}
-
-void AnimateTile(int i, int l)
-{
-/*	if (i >= 100)
-		return;
-	if (l < 0 || l >= numtiles)
-		return;
-
-	switch (vspanim[i].mode)
-	{
-	case 0:
-		if (tileidx[l] < vspanim[i].finish)
-			tileidx[l] += 1;
-		else
-			tileidx[l] = vspanim[i].start;
-		break;
-
-	case 1:
-		if (tileidx[l] > vspanim[i].start)
-			tileidx[l] -= 1;
-		else
-			tileidx[l] = vspanim[i].finish;
-		break;
-
-	case 2:
-		tileidx[l] = (unsigned short) rnd(vspanim[i].start, vspanim[i].finish);
-		break;
-
-	case 3:
-		if (flipped[l])
-		{
-			if (tileidx[l] != vspanim[i].start)
-				tileidx[l] -= 1;
-			else
-			{
-				tileidx[l] += 1;
-				flipped[l] = 0;
-			}
-		}
-		else
-		{
-			if (tileidx[l] != vspanim[i].finish)
-				tileidx[l] += 1;
-			else
-			{
-				tileidx[l] -= 1;
-				flipped[l] = 1;
-			}
-		}
-	}*/
-}
-
-void Animate(int i)
-{
-/*	int l;
-
-	 vadelay[i] = 0;
-	 for (l = vspanim[i].start; l <= vspanim[i].finish; l += 1)
-	 	AnimateTile(i, l);*/
-}
-
-void CheckTileAnimation()
-{
-/*	int i;
-
-	if (!animate) return;
-	if (!vsp) return;
-
-	for (i = 0; i < 100; i += 1)
-	{
-		if ((vspanim[i].delay) && (vspanim[i].delay < vadelay[i]))
-			Animate(i);
-		vadelay[i] += 1;
-	}*/
+    return lo + hi;
 }
 
 // ----------------------------- Entities
 
 void DrawEntity(int i)
 {
-    Entity& ent=ents[i];
-    
+    Entity& ent = ents[i];
+
     if (!ent.visible || !ent.on)
         return;
 
     int dx = ent.x-xwin;
     int dy = ent.y-ywin;
-    
+
     if (ent.chrindex < 0 || ent.chrindex >= numchrs) return;
-    
+
     Sprite& sprite=*chr[ent.chrindex];
 
     int frame = ent.specframe ? ent.specframe : ent.curframe;
-    
+
     if (frame < 0 || frame >= sprite.NumFrames())
     {
-        Log::Write(va("DrawEntity: invalid frame request: %d (%d total)", frame,sprite.NumFrames()));
-        frame=0;
+        Log::Write(va("DrawEntity: invalid frame request: %d (%d total)", frame, sprite.NumFrames()));
+        frame = 0;
     }
-    
+
     gfx.TCopySprite(
         dx - sprite.HotX(),
         dy - sprite.HotY(),
@@ -551,36 +552,34 @@ void DrawEntity(int i)
         (u8*)sprite.GetFrame(frame));
 }
 
-// if the entity is onscreen, then its index is added to the entidx vector.  cc is the number of entities onscreen, apparently.
+// if the entity is onscreen, then its index is added to the entidx vector.  numentsonscreen is the number of entities onscreen.
 void SiftEntities()
 {
     // entidx has as many elements as there are entities so that this thing isn't resized every frame. ;P
     if (entidx.size()!=entities)
         entidx.resize(entities);
 
-    cc=0;
+    numentsonscreen = 0;
 
-    for (int n=0; n<entities; n++)
+    for (int n = 0; n<entities; n++)
     {
-        Entity& ent=ents[n];
+        Entity& ent = ents[n];
 
-        int idx=ents[n].chrindex;
+        int idx = ents[n].chrindex;
 
-        if (!chr[idx])
-            continue;
+        // These are the easiest to check for, so we do them first.
+        if (!chr[idx])							continue;
+        if (!ents[n].visible || !ents[n].on)	continue;
 
-        int dx=ents[n].x-xwin+16;
-        int dy=ents[n].y-ywin+16;
-        
+        int dx = ents[n].x-xwin+16;
+        int dy = ents[n].y-ywin+16;
+
         if (dx<0 || dx>gfx.scrx+chr[ents[n].chrindex]->Width())
             continue;
         if (dy<0 || dy>gfx.scry+chr[ents[n].chrindex]->Height())
             continue;
 
-        if (!ents[n].visible || !ents[n].on)
-            continue;
-        
-        entidx[cc++]=n;
+        entidx[numentsonscreen++]=n;
     }
 }
 
@@ -589,7 +588,7 @@ namespace
     class CompareEntities
     {
     public:
-        inline int operator()(int a,int b)
+        inline int operator()(int a, int b)
         {
             return ents[a].y<ents[b].y;
         }
@@ -599,12 +598,12 @@ namespace
 void RenderEntities()
 {
     SiftEntities();
-    
-    // qsort sucks. <:D
-    std::sort(entidx.begin(),entidx.begin()+cc,CompareEntities());
 
-    int n=0;
-    while (n<cc)
+    // qsort sucks. <:D
+    std::sort(entidx.begin(), entidx.begin()+numentsonscreen, CompareEntities());
+
+    int n = 0;
+    while (n<numentsonscreen)
     {
         DrawEntity(entidx[n]);
         n++;
@@ -615,23 +614,28 @@ void RenderEntities()
 
 void RenderMAP()
 {
-    static int inside=0;
-    int rpos=0;
-        
-    curlayer = 0;
-    
-    while (rpos < rstring.length())
+    static int inside = 0;
+    unsigned int rpos = 0;
+
+    tileanim.Update();                  // not ideal.  Animations will stop when VC is running.
+
+    if (!map)   return;
+
+    DoCameraTracking();
+
+    int layCount = 0;
+
+    while (rpos < map->rstring.length())
     {
-        char c=rstring[rpos];
+        char c = map->rstring[rpos];
 
         if (c>='1' && c<='6')
         {
-            BlitLayer(c-'1');
-            curlayer++;
+            BlitLayer(c-'1', (layCount++) != 0);
         }
         else
             switch (c)
-            {
+        {
             case 'e':
             case 'E': RenderEntities(); break;
             case 's':
@@ -639,13 +643,12 @@ void RenderMAP()
             case 'r':
             case 'R': if (!inside)
                       {
-                          inside=1;
+                          inside = 1;
                           HookRetrace();
-                          curlayer++;
-                          inside=0;
+                          inside = 0;
                       }
-                break;
-            }
+                      break;
+        }
 
         rpos += 1;
     }
@@ -657,7 +660,9 @@ void RenderMAP()
 
 void Render()
 {
-    DoCameraTracking();
-    
+    //  DoCameraTracking();
+
     RenderMAP();
+
+    console.Draw();
 }

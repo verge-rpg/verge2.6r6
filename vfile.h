@@ -15,37 +15,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef VFILE_H
 #define VFILE_H
 
-#define vscanf _vscanf
-
 #include <stdio.h>
 #include "vtypes.h"
 
 struct VFILE
 {
-  FILE* fp;                           // real file pointer.
-  u8 s;                             // 0=real file 1=vfile;
-  u8 v;                             // if vfile, which vfile index
-  u8 i;                             // which file index in vfile is it?
-  u8 p;                             // data alignment pad. :)
-}; // VFILE;
+    FILE* fp;                         // real file pointer.
+    u8 s;                             // 0 = real file 1 = vfile;
+    u8 v;                             // if vfile, which vfile index
+    u8 i;                             // which file index in vfile is it?
+    u8 p;                             // data alignment pad. :)
+};
 
 struct filestruct
 {
-  unsigned char fname[84];            // pathname thingo
-  int size;                           // size of the file
-  int packofs;                        // where the file can be found in PACK
-  int curofs;                         // current file offset.
-  char extractable;                   // irrelevant to runtime, but...
-  char override;                      // should we override?
+    unsigned char fname[84];            // pathname thingo
+    int  size;                          // size of the file
+    int  packofs;                       // where the file can be found in PACK
+    int  curofs;                        // current file offset.
+    char extractable;                   // irrelevant to runtime, but...
+    char override;                      // should we override?
 };
 
 struct mountstruct
 {
-  char mountname[80];                 // name of VRG packfile.
-  FILE* vhandle;                      // Real file-handle of packfile.
-  filestruct* files;           // File record array.
-  int numfiles;                       // number of files in pack.
-  int curofs;                         // Current filepointer.
+    char mountname[80];                 // name of VRG packfile.
+    FILE* vhandle;                      // Real file-handle of packfile.
+    filestruct* files;                  // File record array.
+    int numfiles;                       // number of files in pack.
+    int curofs;                         // Current filepointer.
 };
 
 extern mountstruct pack[3];
@@ -67,6 +65,5 @@ extern u32  vgetq(VFILE* f);
 extern void vgets(char* str, int len, VFILE* f);
 
 extern char V_tolower(char c);
-extern char* V_strlwr(char* str);
 
 #endif

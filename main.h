@@ -16,8 +16,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "strk.h"
-
 extern void* valloc(int amount, char* desc, int owner);
 
 extern void err(char* message);
@@ -25,6 +23,6 @@ extern int  sgn(int x);
 extern void ver();
 extern void CheckMessages();
 
-extern string_k startmap;
+extern std::string startmap;
 
 #endif

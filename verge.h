@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef VERGE_INC
 #define VERGE_INC
 
-#define VERSION "2.6rev5"
+#define VERSION "2.6rev9"
 
 #define TRUE 1
 #define FALSE 0
@@ -36,7 +36,6 @@ extern void Sys_Error(const char* message, ...);
 #include "SDL.h"
 
 #include "a_memory.h"
-#include "strk.h"
 
 #include "console.h"
 #include "engine.h"
@@ -61,14 +60,5 @@ extern Input input;
 extern CFontController font;
 
 extern bool bActive;
-
-extern int hicolor;
-
-extern char tolower(char c);
-
-#ifndef WIN32
-extern char* strlwr(char* str);
-extern int strcasecmp(const char* s1,const char* s2);
-#endif
 
 #endif // VERGE_INC

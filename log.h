@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOG_H
+#define LOG_H
 
 namespace Log
 {
@@ -7,3 +8,5 @@ namespace Log
     void Write(const char* msg);
     void Writen(const char* msg);
 };
+
+#endif

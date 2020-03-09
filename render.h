@@ -13,11 +13,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#pragma once
+#ifndef RENDER_H
+#define RENDER_H
 
 extern unsigned char	animate;
 extern unsigned char	cameratracking;
-extern unsigned char	tracker;
+extern int tracker;
 extern unsigned char	showobs;
 extern unsigned char	showzone;
 
@@ -25,3 +26,5 @@ extern void Render();
 extern void BlitLayer(u8 c);
 extern void CheckTileAnimation();
 extern int rnd(int min, int max);
+
+#endif

@@ -35,16 +35,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define PADFILLVALUE 254
 #define PADSIZE 256
 
-typedef struct
+struct MemBlock
 {
    void *pointer;
    int  size;
    int  owner;
    char desc[40];
-} memblockType;
+};
 
-memblockType chunks[MAXCHUNKS+1];
-int numchunks=0;
+MemBlock chunks[MAXCHUNKS+1];
+int numchunks = 0;
 
 static int ohfuck   =0;
 // set if memory is corrupted.  This is so that vfree can release all the memory before bombing out with an error --tSB
@@ -88,7 +88,7 @@ void *valloc(int amount, char *desc, int owner)
 	return chunks[numchunks++].pointer;
 }
 
-void *qvalloc(int amount)
+/*void *qvalloc(int amount)
 {
 	void *ptr;
 
@@ -105,13 +105,13 @@ void *qvalloc(int amount)
 void qvfree(void *ptr)
 {
    free(ptr);
-}
+}*/
 
 int TotalBytesAllocated(void)
 {
-   int i, tally=0;
+   int i, tally = 0;
 
-   for (i=0; i<numchunks; i++)
+   for (i = 0; i<numchunks; i++)
       tally += chunks[i].size;
 
    return tally;
@@ -121,7 +121,7 @@ int FindChunk(void *pointer)
 {
    int i;
 
-   for (i=0; i<numchunks; i++)
+   for (i = 0; i<numchunks; i++)
       if (chunks[i].pointer == pointer) return i;
    return -1;
 }
@@ -142,7 +142,7 @@ void FreeChunk(int i)
 
 int vfree(void *ptr)
 {
-   int i=FindChunk(ptr);
+   int i = FindChunk(ptr);
    if (i == -1)
    {
       Log::Write(va("vfree: Attempted to free ptr 0x%08X that was not allocated. [dumping mem report]", ptr));
@@ -158,7 +158,7 @@ void FreeByOwner(int owner)
 {
    int i;
 
-   for (i=0; i<numchunks; i++)
+   for (i = 0; i<numchunks; i++)
       if (chunks[i].owner == owner)
          FreeChunk(i--);
 }
@@ -181,7 +181,7 @@ void MemReport(void)
    Log::Write("");
    Log::Write("Per-chunk analysis: ");
 
-   for (i=0; i<numchunks; i++)
+   for (i = 0; i<numchunks; i++)
    {
        Log::Write(va("[%3d] Ptr at: 0x%08X size: %8d owner: %3d desc: %s",
           i, chunks[i].pointer, chunks[i].size, chunks[i].owner, chunks[i].desc));
@@ -195,8 +195,8 @@ void FreeAllMemory()
 {
  int i;
 
- ohfuck=1;
- for (i=0; i<numchunks; i++)
+ ohfuck = 1;
+ for (i = 0; i<numchunks; i++)
   FreeChunk(i);
 }
 
@@ -219,9 +219,9 @@ void CheckCorruption(void)
 {
 	int i, j;
 
-	for (i=0; i<numchunks; i++)
+	for (i = 0; i<numchunks; i++)
 	{
-		j=ChunkIntegrity(i);
+		j = ChunkIntegrity(i);
 		if (!j) continue;
          
         MemReport();

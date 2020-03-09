@@ -1,82 +1,71 @@
-/*
-Copyright (C) 1998 BJ Eirich (aka vecna)
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
-#ifndef CONSOLE_INC
-#define CONSOLE_INC
-
-#include "verge.h"
 #include "vtypes.h"
-
-#define ETC 0
-#define RENDER 1
-#define PFLIP 2
-
-extern u8 cpu_watch;
-extern u8 cpubyte;
-
-#include <string>
-#include <list>
 #include <vector>
-using std::list;
-using std::vector;
-using std::string;
-#pragma warning (disable:4786)
-
-#include "vtypes.h"
-
-
-class CFont;
-
+#include <map>
+#include <list>
+#include <string>
 
 class Console
 {
-    typedef void (*ConsoleFunc)(vector<string_k>& args);
+    typedef std::vector<std::string> StringVec;
+    typedef void (Console::*ConsoleFunc)(const StringVec& args);
+    typedef std::list<std::string> StringList;
+    typedef std::map<std::string, ConsoleFunc> FunctionMap;
 
-    struct ConsoleCommand
+    // Temporary, until a proper image infrastructure is put in place.
+    struct Image
     {
-        string name;            // the name of the command
-        ConsoleFunc Execute;    // the function to call
+        int width;
+        int height;
+        u8* pixels;
 
-        ConsoleCommand(const string& s,ConsoleFunc func) 
-            : name(s),Execute(func)
-        {}
+        Image()
+        {
+            width = height = 0;
+            pixels = 0;
+        }
     };
 
-    list<string> lines;         // command history
-    list<ConsoleCommand> cmds;  // known console commands
+    Image background;
 
-    CFont* font;                // console text font
+    int yposition;  // 0 is completely hidden from view.  gfx.YRes()/2 is all the way down
+    int direction;  // -1 = moving up.  0 = not moving.  1 = moving down
+    int hFont;      // font handle
 
-    u8* imgptr;                 // background image pointer
-    int imgx,imgy;              // background image dimensions
-
-    string_k curline;           // what the user has typed so far
-
-    bool kill;                  // kill-flag
-
-    void Render();              // draws everything
+    FunctionMap functions;  // functions the console knows about
+    StringList  output;     // text output
+    std::string curcommand; // current text buffer
+    bool        enabled;
 
 public:
     Console();
     ~Console();
 
-    void Init();
-    void Activate();
-    void Print(const string_k& str);
+    void Draw();
+    void SendKey(char c);
+    void Exec(const std::string& command);
 
-    void ExecuteCommand(const string_k& cmd);
+    void Open();
+    void Close();
+    bool IsOpen();
+
+    void Enable();
+    void Disable();
+
+    void Write(const char* msg);
+
+private:
+    std::string TabComplete(const std::string& cmd);
+
+    // Console functions
+    void Ver(const StringVec& args);
+    void Clear(const StringVec& args);
+    void Exit(const StringVec& args);
+    void Help(const StringVec& args);
+    void SetBackground(const StringVec& args);
+    void CPUInfo(const StringVec& args);
 };
 
-#endif // CONSOLE_INC
+#endif

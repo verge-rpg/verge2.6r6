@@ -1,5 +1,6 @@
 
-#pragma once
+#ifndef MOVESCRIPT_H
+#define MOVESCRIPT_H
 
 #include "vtypes.h"
 #include <vector>
@@ -31,21 +32,19 @@ public:
         CommandType type;
         int arg;
 
-        Command() : type(ct_stop),arg(0) {}
+        Command() : type(ct_stop), arg(0) {}
     };
 
 private:
     vector<Command> cmds;
 
-    Command NextCommand(const string_k& s,int& offset);
+    Command NextCommand(const std::string& s, uint& offset);
 
 public:
     MoveScript(){}
-    MoveScript(const string_k& str);
+    MoveScript(const std::string& str);
 
-    Command& operator [](int idx)
-    {
-        // ASSERT(...)
-        return cmds[idx];
-    }
+    Command& operator [](uint idx);
 };
+
+#endif

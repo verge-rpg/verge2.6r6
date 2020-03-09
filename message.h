@@ -16,9 +16,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef MESSAGE_INC
 #define MESSAGE_INC
 
+#include <string>
+
 extern void RenderGUI();
 extern void CPUTick();
 
-extern void Message_Send(string_k text, int duration);
+extern void Message_Send(std::string text, int duration);
 
 #endif // MESSAGE_INC

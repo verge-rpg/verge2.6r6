@@ -20,7 +20,7 @@ extern int		Image_Width();
 extern int		Image_Length();
 
 u8*	Image_LoadBuf(const char* filename);
-void WriteImage(u8* data,int width,int height,u8* palette,const char* filename);
-void WriteImage(u16* data,int width,int height,const char* filename);
+void WriteImage(u8* data, int width, int height, u8* palette, const char* filename);
+void WriteImage(u16* data, int width, int height, const char* filename);
 
 #endif // IMAGE_INC

@@ -1,8 +1,9 @@
 
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
 
+#include <string>
 #include "vtypes.h"
-#include "strk.h"
 
 enum Direction
 {
@@ -16,30 +17,35 @@ class GrDriver; // graph.h
 
 class Sprite
 {
-    void* pixeldata;
+    union
+    {
+        u8* p8;
+        u16* p16;
+    } pixeldata;
+
     int pixelsize;          // 1 or 2
     int numframes;
-    int framex,framey;
+    int framex, framey;
 
-    int hotx,hoty;
-    int hotw,hoth;
+    int hotx, hoty;
+    int hotw, hoth;
 
     int idle[4];
 
-    string_k anim[4];
+    std::string anim[4];
 
-    string_k filename;
+    std::string filename;
 
     void Free();
 
 public:
-    Sprite(GrDriver& gfx,const char* fname);
+    Sprite(GrDriver& gfx, const char* fname);
     ~Sprite();
 
     void* GetFrame(int idx) const;
     int IdleFrame(int dir) const;
-    const string_k& GetAnim(int dir) const;
-    const string_k& FileName() const;
+    const std::string& GetAnim(int dir) const;
+    const std::string& FileName() const;
 
     int NumFrames() const { return numframes; }
     int Width()  const { return framex; }
@@ -50,5 +56,7 @@ public:
     int HotH() const { return hoth; }
     int HotW() const { return hotw; }
 
-    bool Load(GrDriver& gfx,const char* filename);
+    bool Load(GrDriver& gfx, const char* filename);
 };
+
+#endif

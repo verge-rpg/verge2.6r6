@@ -17,9 +17,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     Copyright (C) 1998 Benjamin Eirich
     
       Portability:
-      MSVC6   - Yessir.
+      MSVC6 and 7   - Yessir.
       Anything else - Have fun. ;D
-      QBasic  - hahahah.  That just cracks me up.
+      QBasic        - hahahah.  That just cracks me up.
 */
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -43,20 +43,15 @@ extern void ParseAutoCFG();
 
 // ================================= Objects =============================
 
-
 GrDriver gfx;
 Input input;
 CFontController font;
 
 // ================================= Data ====================================
 
-
-char	logoutput	=1;		// Verbose debugging startup mode
+bool	bActive;			// true if the app has focus
 
 // ================================= Code ====================================
-
-
-// InitSystems moved to startup.cpp, where it can have access to Win32
 
 void vmainloop()
 {
@@ -69,16 +64,16 @@ void vmainloop()
     
     if (vckill)
     {
-        FreeVSP();
-        FreeMAP();
         FreeCHRList();
-        vcsp = vcstack;
-        vckill = 0;
+        ResetVC();
         LoadMAP(startmap.c_str());
     }
+
     Render();
     gfx.ShowPage();
 }
+
+void ScreenShot(); // engine.cpp
 
 void CheckMessages()
 {
@@ -93,7 +88,7 @@ void CheckMessages()
         {
         case SDL_KEYDOWN:
         case SDL_KEYUP:
-            input.Update(
+            input.UpdateKeyboard(
                 event.key.keysym.sym,          // egads, that's a lot of dereferencing
                 event.key.state==SDL_PRESSED
                 );
@@ -107,27 +102,24 @@ void CheckMessages()
                 ScreenShot();
 
             break;
-           
+
+        /*case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEBUTTONUP:
+        case SDL_MOUSEMOTION:
+            input.UpdateMouse();
+            break;*/
+
         case SDL_QUIT:
             Sys_Error("");
             break;
         }
     }
+
+    input.UpdateMouse();
 }
 
 int VMain ()
 {
-//    if (argc==2)
-//        startmap = argv[1];
-    
-    console.Init();
-
-    /*
-    Console_Printf(va("VERGE System Version %s", VERSION));
-    Console_Printf("Copyright (C)1998 vecna");
-    Console_Printf("");
-    */
-        
     Log::Writen("Loading system VC");
     LoadSystemVC();
     Log::Write("...OK");

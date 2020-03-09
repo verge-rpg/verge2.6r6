@@ -13,11 +13,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-// ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-// ³                          The VERGE Engine                           ³
-// ³              Copyright (C)1998 BJ Eirich (aka vecna)                ³
-// ³                    Timer / PIC contoller module                     ³
-// ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+// /---------------------------------------------------------------------\
+// |                          The VERGE Engine                           |
+// |              Copyright (C)1998 BJ Eirich (aka vecna)                |
+// |                    Timer / PIC contoller module                     |
+// \---------------------------------------------------------------------/
 
 // ChangeLog
 // Rewritten again.  SDL
@@ -27,22 +27,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ================================= Data ====================================
 
-u32 systemtime,timer_count,vctimer,hktimer;
-SDL_TimerID timerid=0;
+u32 systemtime = 0;
+u32 timer_count = 0;
+u32 vctimer = 0;
+u32 hktimer = 0;
+u8  cpu_watch = 0;
+u8  cpubyte = 0;
+SDL_TimerID timerid = 0;
 
 // ================================= Code ====================================
 
-Uint32 TimeProc(Uint32 interval,void*)
+Uint32 TimeProc(Uint32 interval, void*)
 {  
-    //~ if (!bActive) return; // bleh
+//    if (!bActive) return interval; // bleh
     systemtime++;
     timer_count++;
     hktimer++;
     vctimer++;
 	
     if (cpu_watch)	CPUTick();             
-//    CheckTileAnimation();
-    // sfxUpdate();
 
     return interval;
 }
@@ -51,13 +54,13 @@ int InitTimer()
 {
     if (timerid)
         SDL_RemoveTimer(timerid);
-    timerid=SDL_AddTimer(10,&TimeProc,0);
+    timerid = SDL_AddTimer(10, &TimeProc, 0);
 
-    return timerid!=0;
+    return timerid != 0;
 }
 
 void ShutdownTimer()
 {
     SDL_RemoveTimer(timerid);
-    timerid=0;
+    timerid = 0;
 }

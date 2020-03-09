@@ -1,6 +1,8 @@
 #ifndef NO_SOUND
 
 #include "sound.h"
+#include "log.h"
+#include "misc.h"
 #include "audiere.h"
 
 #include <vector>
@@ -10,107 +12,121 @@ using namespace audiere;
 
 namespace
 {
-    Context* pContext;
-    Stream* pMusicstream;
-    std::vector<Stream*> sfx;
+    RefPtr<AudioDevice> device;
+    RefPtr<OutputStream> musicStream;
+    std::vector< RefPtr<OutputStream> > sfx;
 
-    std::string sCurmusic;
+    std::string curMusic;
 };
 
 void InitSound()
 {
-    pContext=CreateContext(0);
+    device = OpenDevice();
+    if (!device)
+        Log::Write("audiere::OpenDevice failed.");
 }
 
 void ShutdownSound()
 {
-    FreeAllSounds();
-    delete pMusicstream;
-    delete pContext;
-
-    pMusicstream=0;
-    pContext=0;
+    sfx.clear();
+    musicStream = 0;
+    device = 0;
 }
 
-void PlayMusic(const char* fname)
+void PlayMusic(const std::string& fname)
 {
-    if (pMusicstream && !pMusicstream->isPlaying())
+    if (musicStream && !musicStream->isPlaying())
     {
-        pMusicstream->play();
+        musicStream->play();
         return;
     }
 
-    if (!stricmp(sCurmusic.c_str(),fname)) //sCurmusic==fname)
+    if (curMusic == fname)
         return;
 
-    delete pMusicstream;
-    pMusicstream=pContext->openStream(fname);
+    curMusic = fname;
 
-    if (!pMusicstream)
+    musicStream = OpenSound(device.get(), fname.c_str(), true);
+
+    if (!musicStream)
+    {
+        Log::Write("audiere::OpenSound failed.");
         return;
+    }
 
-    pMusicstream->setRepeat(true);
-    pMusicstream->play();
+    musicStream->setRepeat(true);
+    musicStream->play();
 }
 
 void StopMusic()
 {
-    pMusicstream->pause();
+    if (musicStream)
+        musicStream->stop();
 }
 
 int GetMusicVolume()
 {
-    return pMusicstream->getVolume();
+    return musicStream
+        ? (int)(musicStream->getVolume() * 255)
+        : 0;
 }
 
 void SetMusicVolume(int volume)
 {
-    pMusicstream->setVolume(volume);
+    if (musicStream)
+        musicStream->setVolume(1.0f * volume / 255);
 }
 
-int CacheSound(const char* fname)
+int CacheSound(const std::string& fname)
 {
-    Stream* s=pContext->openStream(fname);
+    RefPtr<OutputStream> s = OpenSound(device.get(), fname.c_str(), false);
 
     if (!s)
+    {
+        Log::Write("audiere::OpenSound failed");
         return -1;
-
-    s->setRepeat(false);
+    }
 
     sfx.push_back(s);
-    return sfx.size()-1;
+    return sfx.size() - 1;
 }
 
 int GetMusicPosition()
 {
-    return 0;//pMusicstream->getPosition();
+    return musicStream
+        ? musicStream->getPosition()
+        : 0;
 }
 
 void SetMusicPosition(int pos)
 {
-    //pMusicstream->setPosition(pos);
+    if (musicStream)
+        musicStream->setPosition(pos);
 }
 
 void FreeAllSounds()
 {
-    for (int i=0; i<sfx.size(); i++)
-        delete sfx[i];
-
     sfx.clear();
 }
 
-void PlaySFX(int index,int vol,int pan)
+void PlaySFX(int index, int vol, int pan)
 {
-    if (index<0 || index>=sfx.size())
+    if (index < 0 || index >= sfx.size())
         return;
 
-    sfx[index]->setVolume(vol);
+    if (pan < 0) pan = 0;
+    if (pan > 255) pan = 255;
 
+    sfx[index]->setVolume(1.0f * vol / 255);
+    sfx[index]->setPan((2.0f * pan / 255) - 1.0f);    // -1.0 to 0 to +1.0
     sfx[index]->play();
 }
 
-#else
+#else // defined(NO_SOUND)
 
+#include <string>
+
+// Audio stub follows.  #define NO_SOUND to disable all audio.
 namespace
 {
     int vol;
@@ -120,7 +136,7 @@ namespace
 void InitSound(){}
 
 void ShutdownSound(){}
-void PlayMusic(const char* fname){}
+void PlayMusic(const std::string& fname){}
 void StopMusic(){}
 int GetMusicVolume()
 {
@@ -129,19 +145,19 @@ int GetMusicVolume()
 
 void SetMusicVolume(int volume)
 {
-    vol=volume;
+    vol = volume;
 }
 
 int GetMusicPosition() { return 0; }
 void SetMusicPosition(int) {}
 
-int CacheSound(const char* fname)
+int CacheSound(const std::string& fname)
 {
     return nSounds++;
 }
 
-void FreeAllSounds(){ nSounds=0; }
+void FreeAllSounds(){ nSounds = 0; }
 
-void PlaySFX(int index,int vol,int pan){}
+void PlaySFX(int index, int vol, int pan){}
 
 #endif

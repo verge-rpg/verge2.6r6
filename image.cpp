@@ -13,11 +13,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-// ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-// ³                          The VERGE Engine                           ³
-// ³              Copyright (C)1998 BJ Eirich (aka vecna)                ³
-// ³                           Imaging module                            ³
-// ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+// /---------------------------------------------------------------------\
+// |                          The VERGE Engine                           |
+// |              Copyright (C)1998 BJ Eirich (aka vecna)                |
+// |                           Imaging module                            |
+// \---------------------------------------------------------------------/
 // Mega kudos to aen for porting that GIF code.
 
 /*
@@ -31,11 +31,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 28      November    2000
 <tSB>
 *   Obligatory tweaking to better suit the new graphics driver interface.
-  
+
 8       January         2000
 <aen>
 *       Revamp/tinkering. Interface is: Image_LoadBuf(), Image_Width(), Image_Length()
-    
+
 23      December        1999
 <aen>
 *       Fixed PCX loading code. Again.
@@ -51,12 +51,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 extern GrDriver gfx;
 
-using namespace corona;
-
 namespace
 {
-    int image_width=0;
-    int image_height=0;
+    int image_width = 0;
+    int image_height = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,46 +66,61 @@ int Image_Length()	{ return image_height;	}
 
 u8* Image_LoadBuf(const char* filename)
 {
-    PixelFormat pf = gfx.bpp==1 ? PF_I8 : PF_R8G8B8;
+    corona::PixelFormat pf = gfx.bpp==1 ? corona::PF_I8 : corona::PF_R8G8B8;
 
-    Image* i=OpenImage(filename,FF_AUTODETECT,pf);
+    corona::Image* i = corona::OpenImage(filename, corona::FF_AUTODETECT, pf);
 
     if (!i)
         return 0;   // :x
 
-    image_width=i->getWidth();
-    image_height=i->getHeight();
+    image_width = i->getWidth();
+    image_height = i->getHeight();
 
-    u8* buffer=0;
+    u8* buffer = 0;
 
-    if (gfx.bpp==1) // indexed mode -- set system palette to match the image
+    if (gfx.bpp == 1) // indexed mode -- set system palette to match the image
     {
-        gfx.SetPalette((u8*)i->getPalette());
-        
-        buffer=(u8*)valloc(image_width * image_height,"LoadImage",OID_IMAGE);
+        if (i->getPaletteFormat() == corona::PF_R8G8B8A8)
+        {
+            // blech.  dump the alpha channel
+            u8 pal[768];
+            u8* s = (u8*)i->getPalette();
+            u8* d = &pal[0];
+            for (int j = 0; j < 256; j++)
+                // grab three bytes, skip one.
+            {   *d++ = *s++; *d++ = *s++; *d++ = *s++; s++;  }
+            gfx.SetPalette(pal);
+        }
+        else
+            gfx.SetPalette((u8*)i->getPalette());
+
+        buffer = (u8*)valloc(image_width * image_height, "LoadImage", OID_IMAGE);
         memcpy(buffer, i->getPixels(), i->getWidth() * i->getHeight());
     }
     else
     {
         // Convert 8bpp images to 24bpp, after setting the system palette.
-        if (i->getFormat()==PF_I8)
+        if (i->getFormat() == corona::PF_I8)
         {
             gfx.SetPalette((u8*)i->getPalette());
 
-            i=ConvertImage(i,PF_R8G8B8);
+            i = corona::ConvertImage(i, corona::PF_R8G8B8);
         }
 
-        buffer=(u8*)valloc(image_width * image_height * 2,"LoadImage",OID_IMAGE);
-        u16* buf=(u16*)buffer;
-        u8*  src=(u8*)i->getPixels();
+        buffer=(u8*)valloc(image_width * image_height * 2, "LoadImage", OID_IMAGE);
+        u16* buf = (u16*)buffer;
+        u8*  src = (u8*)i->getPixels();
 
-        for (int i=0; i<image_width * image_height; i++)
+        for (int i = 0; i<image_width * image_height; i++)
         {
-            u8 r=*src++;
-            u8 g=*src++;
-            u8 b=*src++;
+            u8 r = *src++;
+            u8 g = *src++;
+            u8 b = *src++;
 
-            buf[i]=gfx.PackPixel(r,g,b);
+            if (r==255 && g==0 && b==255)   // transparent?
+                buf[i]=gfx.trans_mask;
+            else
+                buf[i]=gfx.PackPixel(r, g, b);
         }
     }
 
@@ -116,31 +129,31 @@ u8* Image_LoadBuf(const char* filename)
     return buffer;
 }
 
-void WriteImage(u8* data,int width,int height,u8* palette,const char* filename)
+void WriteImage(u8* data, int width, int height, u8* palette, const char* filename)
 {
-    Image* img=CreateImage(width,height,PF_I8,256,PF_R8G8B8);
+    corona::Image* img = corona::CreateImage(width, height, corona::PF_I8, 256, corona::PF_R8G8B8);
 
-    memcpy(img->getPixels(),data,width*height);
-    memcpy(img->getPalette(),palette,256*3);
+    memcpy(img->getPixels(), data, width*height);
+    memcpy(img->getPalette(), palette, 256);
 
-    SaveImage(filename,FF_PNG,img);
+    corona::SaveImage(filename, corona::FF_PNG, img);
 
     delete img;
 }
 
-void WriteImage(u16* data,int width,int height,const char* filename)
+void WriteImage(u16* data, int width, int height, const char* filename)
 {
-    Image* img=CreateImage(width,height,PF_R8G8B8A8);
+    corona::Image* img = corona::CreateImage(width, height, corona::PF_R8G8B8A8);
     u32* temp=(u32*)img->getPixels();
 
-    int r,g,b;
-    for (int i=0; i<width*height; i++)
+    int r, g, b;
+    for (int i = 0; i<width*height; i++)
     {
-        gfx.UnPackPixel(data[i],r,g,b);
+        gfx.UnPackPixel(data[i], r, g, b);
         temp[i]=(255<<24) | (b<<16) | (g<<8) | r;
     }
 
-    SaveImage(filename,FF_PNG,img);
+    corona::SaveImage(filename, corona::FF_PNG, img);
 
     delete img;
 }

@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class CFont
 {
-    string_k        sFilename;
+    std::string        sFilename;
     
     int             nWidth, nHeight;        // font cell dimensions; currently all fonts are monospace
     int             nSubsets;               // total sets within this font
@@ -38,7 +38,7 @@ public:
     void Clear();                           // vacates this font; frees image data, empties filename string
     
     // accessors
-    const string_k& FileName()
+    const std::string& FileName()
         const { return sFilename; }
     int Height()        const { return nHeight; }
     int Width()         const { return nWidth; }
@@ -52,8 +52,8 @@ public:
     int  CurSubSet() const      { return nSubsets; }
     void SetSubSet(int subset);
     
-    void PrintChar(char ch,const int x,const int y);
-    void Print(const char* zstr, int& x,int& y, int imbed = 0);
+    void PrintChar(char ch, const int x, const int y);
+    void Print(const char* zstr, int& x, int& y, int imbed = 0);
     
     bool LoadFromFile(const char* filename);
 };
@@ -63,7 +63,7 @@ class CFontController
 private:
     // actual fonts
     std::vector<CFont> font;
-    int nCurx,nCury;
+    int nCurx, nCury;
     int nAlignx;
     
 public:
@@ -73,11 +73,11 @@ public:
     int Load(const char* filename);
     
     // accessors
-    CFont& operator[] (int slot) const;
+    CFont& operator[] (uint slot) const;
     
-    void GotoXY(int x,int y);
+    void GotoXY(int x, int y);
     
-    void PrintString(int subset,const char* msg);
+    void PrintString(int subset, const char* msg);
 
     int CurX() const { return nCurx; }
     int CurY() const { return nCury; }

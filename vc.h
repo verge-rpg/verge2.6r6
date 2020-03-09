@@ -29,55 +29,47 @@ extern int			stralloc;
 
 extern void RunSystemAutoexec();
 
-typedef struct
+struct FuncDecl
 {
 	char fname[40];
 	char argtype[20];
 	int numargs, numlocals;
 	int returntype;
 	int syscodeofs;
-} funcdecl;
+};
 
-extern funcdecl*	funcs;
-extern int			numfuncs;
-
-typedef struct
+struct StrDecl
 {
 	char vname[40];
 	int vsofs;
 	int arraylen;
-} strdecl;
+};
 
-extern strdecl*		str;
-extern int			numstr;
-
-typedef struct
+struct VarDecl
 {
 	char vname[40];
 	int varstartofs;
 	int arraylen;
-} vardecl;
-
-extern vardecl*		vars;
-extern int			numvars;
+};
 
 extern int		invc;
 extern char*	mapvc;
 extern char		vckill;
 
-extern u32*	vcsp;
-extern u32*	vcstack;
+//extern u32*	vcsp;
+//extern u32*	vcstack;
 
-extern void LoadSystemVC();
-extern void LoadMapVC(struct VFILE* f);
-extern void ReadVCVar();
-extern void WriteVCVar();
-extern void ExecuteEvent(int);
-extern void ExecuteUserFunc(int);
+void LoadSystemVC();
+void LoadMapVC(struct VFILE* f);
+void ResetVC();                     // clears the callstack, etc etc
+void ReadVCVar();
+void WriteVCVar();
+void ExecuteEvent(int);
+void ExecuteUserFunc(int);
 
-extern void CheckHookTimer();
-extern void HookRetrace();
-extern void HookTimer();
-extern void HookKey(int script);
+void CheckHookTimer();
+void HookRetrace();
+void HookTimer();
+void HookKey(int script);
 
 #endif // VC_H

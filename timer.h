@@ -21,6 +21,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 extern int InitTimer();
 extern void ShutdownTimer();
 
-extern u32 systemtime,timer_count,vctimer,hktimer;
+extern u32 systemtime, timer_count, vctimer, hktimer;
+extern u8 cpubyte, cpu_watch;
+
+enum
+{
+    ETC,
+    RENDER,
+    PFLIP,
+};
 
 #endif

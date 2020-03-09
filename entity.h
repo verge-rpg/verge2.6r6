@@ -20,8 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "movescript.h"
 #include "vfile.h"
 #include <vector>
-
-using std::vector;
+#include <string>
 
 // new entity class (except that I'm too lazy to make accessors for all this junk)
 struct Entity
@@ -30,12 +29,12 @@ struct Entity
     {
         mp_stopped,
         mp_wander,
-        mp_wanderrect,
         mp_wanderzone,
+        mp_wanderrect,
         mp_scripted,
     };
 
-    int         x,y;                    // pixel-coords.  divide if you want tile coords.
+    int         x, y;                    // pixel-coords.  divide if you want tile coords.
 
     Direction   direction;
     int         movecount;              // number of ticks before the entity stops doing whatever its doing and does something else
@@ -53,8 +52,8 @@ struct Entity
     //int         delaycount;
 
     int         animscriptidx;
-    string_k    curanim;
-    int         animofs;
+    std::string    curanim;
+    unsigned int         animofs;
     int         animcount;              // counter thingie
 
     int         movescriptidx;
@@ -70,10 +69,10 @@ struct Entity
 
     //int         subtilecount;           // ???
     int         mode;                   // ???
-    
+
     int         step;                   // wandering things
     int         delay;                  // ditto
-    int         stepcount,delaycount;
+    int         stepcount, delaycount;
 
     bool        visible;
     bool        on;                     // the entity essentially does not exist if this is false
@@ -83,42 +82,32 @@ struct Entity
 
     int         actscript;              // script called when the entity is activated
 
-    string_k    description;            // arbitrary
+    std::string    description;            // arbitrary
 
     int tx() const { return x>>4;   }
     int ty() const { return y>>4;   }
 
     // interface
-    void Process();
+    void Update();
 
     Entity()
-    {        
+    {
         Clear();
     }
 
     void Clear()
     {
         // :D
-        x=y=movecount=curframe=specframe=chrindex=speed=speedcount=animscriptidx=animcount=animofs=movescriptidx=scriptofs=scriptcount=mode=step=delay=stepcount=delaycount=wanderzone=actscript=0;
-        ismoving=adjactivate=false;
-        isobs=canobs=autoface=visible=on=true;
-        direction=down;
-        movecode=mp_stopped;
+        x = y=movecount = curframe = specframe = chrindex = speed = speedcount = animscriptidx = animcount = animofs = movescriptidx = scriptofs = scriptcount = mode = step = delay = stepcount = delaycount = wanderzone = actscript = 0;
+        ismoving = adjactivate = false;
+        isobs = canobs = autoface = visible = on = true;
+        direction = down;
+        movecode = mp_stopped;
     }
 
-    void SetMoveScript(int idx,MoveScript& m)
-    {
-        if (idx!=movescriptidx)
-            scriptofs=scriptcount=0;
+    void SetMoveScript(const MoveScript& m);
 
-        movescriptidx=idx;
-        curmovescript=m;
-
-    }
-
-//private:
-
-    static void TweakTileCoords(int& x,int& y,Direction d);
+    static void TweakTileCoords(int& x, int& y, Direction d);
     void Move(Direction d);
     void Move();        // move one pixel in the current direction
 
@@ -131,31 +120,30 @@ struct Entity
 
     void Animate();
     void SetAnimScript(Direction d);
+
+private:
+    void Process();
 };
 
-VFILE* operator >> (VFILE* f,Entity& e);
+VFILE* operator >> (VFILE* f, Entity& e);
 
-extern string_k chrlist[100];
+extern std::string chrlist[100];
 extern int playeridx;                   // player index
 extern std::vector<Entity> ents;
 extern Sprite* chr[100];
 extern int entities, numchrs;
 extern std::vector<int> entidx;
-extern u8 cc;
+extern u8 numentsonscreen;
 
 void ProcessEntities();
-void LoadCHRList(const vector<string_k>& l);
+void LoadCHRList(const std::vector<std::string>& l);
 void FreeCHRList();
-//void EntityStat();
-//void ListActiveEnts();
-//void EntityS();
 int EntityAt(int ex, int ey);
 int EntityObsAt(int ex, int ey);
 
 int ObstructionAt(int ex, int ey);
-int Zone(int tx,int ty);
-int CacheCHR(const string_k& fname);
+int CacheCHR(const std::string& fname);
 int AllocateEntity(int x1, int y1, const char *fname);
-void ChangeCHR(int who, const char* chrname);
+void ChangeCHR(uint who, const char* chrname);
 
 #endif

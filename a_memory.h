@@ -17,8 +17,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define MEMORY_H
 
 extern void *valloc(int amount, char *desc, int owner);
-extern void *qvalloc(int amount);
-extern void qvfree(void *ptr);
+//extern void *qvalloc(int amount);
+//extern void qvfree(void *ptr);
 extern int  TotalBytesAllocated(void);
 extern int  FindChunk(void *pointer);
 extern void FreeChunk(int i);
