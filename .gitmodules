@@ -1,4 +1,0 @@
-[submodule "SDL"]
-	path = SDL
-	url = https://github.com/sethlu/SDL.git
-	branch = SDL12
