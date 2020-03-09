@@ -73,7 +73,6 @@
     <ClCompile Include="corona\libpng-1.5.12\pngrtran.c" />
     <ClCompile Include="corona\libpng-1.5.12\pngrutil.c" />
     <ClCompile Include="corona\libpng-1.5.12\pngset.c" />
-    <ClCompile Include="corona\libpng-1.5.12\pngtest.c" />
     <ClCompile Include="corona\libpng-1.5.12\pngtrans.c" />
     <ClCompile Include="corona\libpng-1.5.12\pngwio.c" />
     <ClCompile Include="corona\libpng-1.5.12\pngwrite.c" />
@@ -120,6 +119,48 @@
     <ClCompile Include="movescript.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="render.cpp" />
+    <ClCompile Include="SDL\src\cpuinfo\SDL_cpuinfo.c" />
+    <ClCompile Include="SDL\src\events\SDL_active.c" />
+    <ClCompile Include="SDL\src\events\SDL_events.c" />
+    <ClCompile Include="SDL\src\events\SDL_expose.c" />
+    <ClCompile Include="SDL\src\events\SDL_keyboard.c" />
+    <ClCompile Include="SDL\src\events\SDL_mouse.c" />
+    <ClCompile Include="SDL\src\events\SDL_quit.c" />
+    <ClCompile Include="SDL\src\events\SDL_resize.c" />
+    <ClCompile Include="SDL\src\joystick\SDL_joystick.c" />
+    <ClCompile Include="SDL\src\joystick\win32\SDL_mmjoystick.c" />
+    <ClCompile Include="SDL\src\main\win32\SDL_win32_main.c" />
+    <ClCompile Include="SDL\src\SDL.c" />
+    <ClCompile Include="SDL\src\SDL_error.c" />
+    <ClCompile Include="SDL\src\SDL_fatal.c" />
+    <ClCompile Include="SDL\src\stdlib\SDL_getenv.c" />
+    <ClCompile Include="SDL\src\stdlib\SDL_iconv.c" />
+    <ClCompile Include="SDL\src\stdlib\SDL_string.c" />
+    <ClCompile Include="SDL\src\thread\SDL_thread.c" />
+    <ClCompile Include="SDL\src\thread\win32\SDL_sysmutex.c" />
+    <ClCompile Include="SDL\src\thread\win32\SDL_syssem.c" />
+    <ClCompile Include="SDL\src\thread\win32\SDL_systhread.c" />
+    <ClCompile Include="SDL\src\timer\SDL_timer.c" />
+    <ClCompile Include="SDL\src\timer\win32\SDL_systimer.c" />
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullevents.c" />
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullmouse.c" />
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullvideo.c" />
+    <ClCompile Include="SDL\src\video\SDL_blit.c" />
+    <ClCompile Include="SDL\src\video\SDL_blit_0.c" />
+    <ClCompile Include="SDL\src\video\SDL_blit_1.c" />
+    <ClCompile Include="SDL\src\video\SDL_blit_A.c" />
+    <ClCompile Include="SDL\src\video\SDL_blit_N.c" />
+    <ClCompile Include="SDL\src\video\SDL_cursor.c" />
+    <ClCompile Include="SDL\src\video\SDL_pixels.c" />
+    <ClCompile Include="SDL\src\video\SDL_RLEaccel.c" />
+    <ClCompile Include="SDL\src\video\SDL_surface.c" />
+    <ClCompile Include="SDL\src\video\SDL_video.c" />
+    <ClCompile Include="SDL\src\video\wincommon\SDL_sysevents.c" />
+    <ClCompile Include="SDL\src\video\wincommon\SDL_sysmouse.c" />
+    <ClCompile Include="SDL\src\video\wincommon\SDL_syswm.c" />
+    <ClCompile Include="SDL\src\video\wincommon\SDL_wingl.c" />
+    <ClCompile Include="SDL\src\video\windib\SDL_dibevents.c" />
+    <ClCompile Include="SDL\src\video\windib\SDL_dibvideo.c" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="startup.cpp" />
@@ -192,6 +233,21 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="render.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SDL\src\events\SDL_events_c.h" />
+    <ClInclude Include="SDL\src\SDL_fatal.h" />
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullevents_c.h" />
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullmouse_c.h" />
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullvideo.h" />
+    <ClInclude Include="SDL\src\video\SDL_blit.h" />
+    <ClInclude Include="SDL\src\video\wincommon\SDL_lowvideo.h" />
+    <ClInclude Include="SDL\src\video\wincommon\SDL_sysmouse_c.h" />
+    <ClInclude Include="SDL\src\video\wincommon\SDL_syswm_c.h" />
+    <ClInclude Include="SDL\src\video\wincommon\SDL_wingl_c.h" />
+    <ClInclude Include="SDL\src\video\wincommon\wmmsg.h" />
+    <ClInclude Include="SDL\src\video\windib\SDL_dibevents_c.h" />
+    <ClInclude Include="SDL\src\video\windib\SDL_dibvideo.h" />
+    <ClInclude Include="SDL\src\video\windib\SDL_gapidibvideo.h" />
+    <ClInclude Include="SDL\src\video\windib\SDL_vkeys.h" />
     <ClInclude Include="SDL_config.h" />
     <ClInclude Include="sincos.h" />
     <ClInclude Include="sound.h" />
@@ -254,10 +310,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SDL_AUDIO_DISABLED;SDL_CDROM_DISABLED;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>.;SDL/include;corona;audiere;corona/libpng-1.5.12;corona/jpeg-6b;corona/libungif-4.1.0;corona/zlib-1.1.4</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

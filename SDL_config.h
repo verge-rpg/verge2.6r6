@@ -161,7 +161,7 @@ typedef unsigned int uintptr_t;
 #define SDL_VIDEO_DRIVER_GAPI	1
 #endif
 #ifndef _WIN32_WCE
-#define SDL_VIDEO_DRIVER_DDRAW	1
+//#define SDL_VIDEO_DRIVER_DDRAW	1 //MBG 09-mar-2020 - dont want to bother with this for now
 #endif
 #define SDL_VIDEO_DRIVER_DUMMY	1
 #define SDL_VIDEO_DRIVER_WINDIB	1

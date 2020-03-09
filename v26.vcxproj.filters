@@ -254,9 +254,6 @@
     <ClCompile Include="corona\libpng-1.5.12\pngset.c">
       <Filter>corona\libpng-1.5.12</Filter>
     </ClCompile>
-    <ClCompile Include="corona\libpng-1.5.12\pngtest.c">
-      <Filter>corona\libpng-1.5.12</Filter>
-    </ClCompile>
     <ClCompile Include="corona\libpng-1.5.12\pngtrans.c">
       <Filter>corona\libpng-1.5.12</Filter>
     </ClCompile>
@@ -313,6 +310,132 @@
     </ClCompile>
     <ClCompile Include="corona\zlib-1.1.4\uncompr.c">
       <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\main\win32\SDL_win32_main.c">
+      <Filter>SDL\src\main\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_video.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_cursor.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_pixels.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_surface.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\SDL.c">
+      <Filter>SDL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\SDL_error.c">
+      <Filter>SDL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\SDL_fatal.c">
+      <Filter>SDL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_RLEaccel.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_events.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_blit.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_blit_0.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_blit_1.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_blit_N.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_keyboard.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\timer\SDL_timer.c">
+      <Filter>SDL\src\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_mouse.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\joystick\SDL_joystick.c">
+      <Filter>SDL\src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\thread\SDL_thread.c">
+      <Filter>SDL\src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\thread\win32\SDL_sysmutex.c">
+      <Filter>SDL\src\thread\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\thread\win32\SDL_systhread.c">
+      <Filter>SDL\src\thread\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\stdlib\SDL_getenv.c">
+      <Filter>SDL\src\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\timer\win32\SDL_systimer.c">
+      <Filter>SDL\src\timer\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_active.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\joystick\win32\SDL_mmjoystick.c">
+      <Filter>SDL\src\joystick\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_quit.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\stdlib\SDL_string.c">
+      <Filter>SDL\src\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\thread\win32\SDL_syssem.c">
+      <Filter>SDL\src\thread\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\wincommon\SDL_sysevents.c">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\cpuinfo\SDL_cpuinfo.c">
+      <Filter>SDL\src\cpuinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\SDL_blit_A.c">
+      <Filter>SDL\src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_resize.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\stdlib\SDL_iconv.c">
+      <Filter>SDL\src\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\events\SDL_expose.c">
+      <Filter>SDL\src\events</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\wincommon\SDL_sysmouse.c">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\windib\SDL_dibvideo.c">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\windib\SDL_dibevents.c">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\wincommon\SDL_syswm.c">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\wincommon\SDL_wingl.c">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullmouse.c">
+      <Filter>SDL\src\video\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullvideo.c">
+      <Filter>SDL\src\video\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL\src\video\dummy\SDL_nullevents.c">
+      <Filter>SDL\src\video\dummy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +602,51 @@
     <ClInclude Include="corona\zlib-1.1.4\trees.h">
       <Filter>corona\zlib-1.1.4</Filter>
     </ClInclude>
+    <ClInclude Include="SDL\src\SDL_fatal.h">
+      <Filter>SDL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\events\SDL_events_c.h">
+      <Filter>SDL\src\events</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\SDL_blit.h">
+      <Filter>SDL\src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\windib\SDL_dibvideo.h">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\windib\SDL_gapidibvideo.h">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\windib\SDL_vkeys.h">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\windib\SDL_dibevents_c.h">
+      <Filter>SDL\src\video\windib</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\wincommon\SDL_sysmouse_c.h">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\wincommon\SDL_syswm_c.h">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\wincommon\SDL_wingl_c.h">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\wincommon\wmmsg.h">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\wincommon\SDL_lowvideo.h">
+      <Filter>SDL\src\video\wincommon</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullevents_c.h">
+      <Filter>SDL\src\video\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullmouse_c.h">
+      <Filter>SDL\src\video\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL\src\video\dummy\SDL_nullvideo.h">
+      <Filter>SDL\src\video\dummy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
@@ -507,6 +675,60 @@
     </Filter>
     <Filter Include="corona\zlib-1.1.4">
       <UniqueIdentifier>{e8faa0bc-c8d4-44c0-bc12-d9de58d0926f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL">
+      <UniqueIdentifier>{ea3ca05f-3bb0-4197-9c1e-761f69e48776}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src">
+      <UniqueIdentifier>{dda5c1fd-9d7d-4acb-8e67-25367c0ddb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\main">
+      <UniqueIdentifier>{73d72b69-ec04-456f-9a33-a822416bf4da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\main\win32">
+      <UniqueIdentifier>{f7d64973-6964-4dee-a837-61970a9b97a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\video">
+      <UniqueIdentifier>{420c1402-3984-4ba9-8030-39a5f61a7b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\audio">
+      <UniqueIdentifier>{23d2b140-a3ea-408b-84fb-74256cdb15d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\events">
+      <UniqueIdentifier>{3fc52514-8dd2-4645-932d-fe97606085ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\timer">
+      <UniqueIdentifier>{c7ffa739-4e91-43a6-a067-80d9bff83ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\joystick">
+      <UniqueIdentifier>{e8681b87-9bf0-4c35-8c1b-25e0d78ff9ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\thread">
+      <UniqueIdentifier>{54a12387-0b86-4a79-ad65-31699390236d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\thread\win32">
+      <UniqueIdentifier>{05cddca5-5473-4711-9fc6-a18e7642f226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\stdlib">
+      <UniqueIdentifier>{741799ab-076d-4fbc-a161-fdd17c8afd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\timer\win32">
+      <UniqueIdentifier>{727e436f-5159-4286-beda-5d69a6c67a7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\joystick\win32">
+      <UniqueIdentifier>{58a80a0d-9e5c-4081-ab24-cfa1fc15d9cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\video\wincommon">
+      <UniqueIdentifier>{54dc69e9-8eb4-4fc3-8b3d-3525b9870399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\cpuinfo">
+      <UniqueIdentifier>{46ded675-6079-407b-bd91-d745cd1d4fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\video\windib">
+      <UniqueIdentifier>{f3b6a296-8421-4d1d-a085-32a666156306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL\src\video\dummy">
+      <UniqueIdentifier>{03d6d368-94a8-415d-8078-99f193627090}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
