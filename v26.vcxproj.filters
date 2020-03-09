@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="2xsai.cpp" />
+    <ClCompile Include="a_memory.cpp" />
+    <ClCompile Include="Console.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2xsai.h" />
+    <ClInclude Include="a_memory.h" />
+    <ClInclude Include="Console.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2xSaImmx.asm" />
+  </ItemGroup>
+</Project>
