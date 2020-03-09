@@ -35,6 +35,285 @@
       <Filter>VergeC</Filter>
     </ClCompile>
     <ClCompile Include="videofilter.cpp" />
+    <ClCompile Include="corona\MemoryFile.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenBMP.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenGIF.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenJPEG.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenPCX.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenPNG.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\OpenTGA.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\SaveJPEG.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\SavePNG.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\SaveTGA.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\Convert.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\Corona.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\Debug.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\DefaultFileSystem.cpp">
+      <Filter>corona</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jquant2.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jutils.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcapimin.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcapistd.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jccoefct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jccolor.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcdctmgr.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jchuff.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcinit.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcmainct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcmarker.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcmaster.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcomapi.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcparam.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcphuff.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcprepct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jcsample.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jctrans.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdapimin.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdapistd.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdatadst.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdatasrc.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdcoefct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdcolor.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jddctmgr.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdhuff.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdinput.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdmainct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdmarker.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdmaster.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdmerge.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdphuff.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdpostct.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdsample.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jdtrans.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jerror.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jfdctflt.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jfdctfst.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jfdctint.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jidctflt.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jidctfst.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jidctint.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jidctred.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jmemmgr.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jmemnobs.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\jpeg-6b\jquant1.c">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngwrite.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngwtran.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngwutil.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\png.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngerror.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngget.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngmem.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngpread.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngread.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngrio.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngrtran.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngrutil.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngset.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngtest.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngtrans.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libpng-1.5.12\pngwio.c">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libungif-4.1.0\gifalloc.c">
+      <Filter>corona\libungif-4.1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libungif-4.1.0\dgif_lib.c">
+      <Filter>corona\libungif-4.1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\libungif-4.1.0\gif_err.c">
+      <Filter>corona\libungif-4.1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\zutil.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\adler32.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\compress.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\crc32.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\deflate.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\gzio.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\infblock.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\infcodes.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\inffast.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\inflate.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\inftrees.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\infutil.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\trees.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="corona\zlib-1.1.4\uncompr.c">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="a_memory.h" />
@@ -83,6 +362,123 @@
     <ClInclude Include="VergeC\Event.h">
       <Filter>VergeC</Filter>
     </ClInclude>
+    <ClInclude Include="corona\MemoryFile.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\Open.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\Save.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\SimpleImage.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\Types.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\Utility.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\corona.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\Debug.h">
+      <Filter>corona</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jversion.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jchuff.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jconfig.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jdct.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jdhuff.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jerror.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jinclude.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jmemsys.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jmorecfg.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jpegint.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\jpeg-6b\jpeglib.h">
+      <Filter>corona\jpeg-6b</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\png.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pngconf.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pngdebug.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pnginfo.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pnglibconf.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pngpriv.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libpng-1.5.12\pngstruct.h">
+      <Filter>corona\libpng-1.5.12</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libungif-4.1.0\gif_lib_private.h">
+      <Filter>corona\libungif-4.1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\libungif-4.1.0\gif_lib.h">
+      <Filter>corona\libungif-4.1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\zconf.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\zlib.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\zutil.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\deflate.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\infblock.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\infcodes.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\inffast.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\inffixed.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\inftrees.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\infutil.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="corona\zlib-1.1.4\trees.h">
+      <Filter>corona\zlib-1.1.4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
@@ -96,6 +492,21 @@
     </Filter>
     <Filter Include="VergeC">
       <UniqueIdentifier>{917d1ae9-41b1-4781-b58c-7329a04d7a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="corona">
+      <UniqueIdentifier>{4958edf7-4735-411e-9910-23ca0cb2cf81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="corona\jpeg-6b">
+      <UniqueIdentifier>{2d126a0d-3034-4430-9340-097a878bdfc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="corona\libpng-1.5.12">
+      <UniqueIdentifier>{d0cf27fd-31b2-46a8-a747-bf41f792da96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="corona\libungif-4.1.0">
+      <UniqueIdentifier>{b1876754-8044-457d-8a0b-f5e039fc1e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="corona\zlib-1.1.4">
+      <UniqueIdentifier>{e8faa0bc-c8d4-44c0-bc12-d9de58d0926f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
