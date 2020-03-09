@@ -11,6 +11,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="audiere\basic_source.cpp" />
+    <ClCompile Include="audiere\cd_null.cpp" />
+    <ClCompile Include="audiere\cd_win32.cpp" />
+    <ClCompile Include="audiere\debug.cpp" />
+    <ClCompile Include="audiere\device.cpp" />
+    <ClCompile Include="audiere\device_ds.cpp" />
+    <ClCompile Include="audiere\device_ds_buffer.cpp" />
+    <ClCompile Include="audiere\device_ds_stream.cpp" />
+    <ClCompile Include="audiere\device_mixer.cpp" />
+    <ClCompile Include="audiere\device_mm.cpp" />
+    <ClCompile Include="audiere\device_null.cpp" />
+    <ClCompile Include="audiere\dumb_resample.cpp" />
+    <ClCompile Include="audiere\dxguid.cpp" />
+    <ClCompile Include="audiere\file_ansi.cpp" />
+    <ClCompile Include="audiere\input.cpp" />
+    <ClCompile Include="audiere\input_aiff.cpp" />
+    <ClCompile Include="audiere\input_mod.cpp" />
+    <ClCompile Include="audiere\input_mp3.cpp" />
+    <ClCompile Include="audiere\input_mpg123.cpp" />
+    <ClCompile Include="audiere\input_wav.cpp" />
+    <ClCompile Include="audiere\loop_point_source.cpp" />
+    <ClCompile Include="audiere\memory_file.cpp" />
+    <ClCompile Include="audiere\midi_mci.cpp" />
+    <ClCompile Include="audiere\midi_null.cpp" />
+    <ClCompile Include="audiere\noise.cpp" />
+    <ClCompile Include="audiere\resampler.cpp" />
+    <ClCompile Include="audiere\sample_buffer.cpp" />
+    <ClCompile Include="audiere\sound.cpp" />
+    <ClCompile Include="audiere\sound_effect.cpp" />
+    <ClCompile Include="audiere\square_wave.cpp" />
+    <ClCompile Include="audiere\threads_posix.cpp" />
+    <ClCompile Include="audiere\threads_win32.cpp" />
+    <ClCompile Include="audiere\timer_ansi.cpp" />
+    <ClCompile Include="audiere\timer_posix.cpp" />
+    <ClCompile Include="audiere\timer_win32.cpp" />
+    <ClCompile Include="audiere\tone.cpp" />
+    <ClCompile Include="audiere\utility.cpp" />
+    <ClCompile Include="audiere\version.cpp" />
     <ClCompile Include="a_memory.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="corona\Convert.cpp" />
@@ -175,6 +213,31 @@
     <ClCompile Include="vsp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audiere\audiere.h" />
+    <ClInclude Include="audiere\basic_source.h" />
+    <ClInclude Include="audiere\debug.h" />
+    <ClInclude Include="audiere\default_file.h" />
+    <ClInclude Include="audiere\device.h" />
+    <ClInclude Include="audiere\device_ds.h" />
+    <ClInclude Include="audiere\device_ds_buffer.h" />
+    <ClInclude Include="audiere\device_ds_stream.h" />
+    <ClInclude Include="audiere\device_mixer.h" />
+    <ClInclude Include="audiere\device_mm.h" />
+    <ClInclude Include="audiere\device_null.h" />
+    <ClInclude Include="audiere\dumb_resample.h" />
+    <ClInclude Include="audiere\input_aiff.h" />
+    <ClInclude Include="audiere\input_mod.h" />
+    <ClInclude Include="audiere\input_mp3.h" />
+    <ClInclude Include="audiere\input_wav.h" />
+    <ClInclude Include="audiere\internal.h" />
+    <ClInclude Include="audiere\mci_device.h" />
+    <ClInclude Include="audiere\memory_file.h" />
+    <ClInclude Include="audiere\resampler.h" />
+    <ClInclude Include="audiere\resource.h" />
+    <ClInclude Include="audiere\threads.h" />
+    <ClInclude Include="audiere\timer.h" />
+    <ClInclude Include="audiere\types.h" />
+    <ClInclude Include="audiere\utility.h" />
     <ClInclude Include="a_memory.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="corona\corona.h" />
@@ -268,6 +331,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="audiere\Makefile.am" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

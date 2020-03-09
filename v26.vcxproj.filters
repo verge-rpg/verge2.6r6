@@ -437,6 +437,120 @@
     <ClCompile Include="SDL\src\video\dummy\SDL_nullevents.c">
       <Filter>SDL\src\video\dummy</Filter>
     </ClCompile>
+    <ClCompile Include="audiere\cd_win32.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\debug.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_ds.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_ds_buffer.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_ds_stream.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_mixer.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_mm.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\device_null.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\dumb_resample.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\dxguid.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\file_ansi.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input_aiff.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input_mod.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input_mp3.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input_mpg123.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\input_wav.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\loop_point_source.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\memory_file.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\midi_mci.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\midi_null.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\noise.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\resampler.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\sample_buffer.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\sound.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\sound_effect.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\square_wave.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\threads_posix.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\threads_win32.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\timer_ansi.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\timer_posix.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\timer_win32.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\tone.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\utility.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\version.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\basic_source.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\cd_null.cpp">
+      <Filter>audiere</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="a_memory.h" />
@@ -647,6 +761,81 @@
     <ClInclude Include="SDL\src\video\dummy\SDL_nullvideo.h">
       <Filter>SDL\src\video\dummy</Filter>
     </ClInclude>
+    <ClInclude Include="audiere\debug.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\default_file.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_ds.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_ds_buffer.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_ds_stream.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_mixer.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_mm.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\device_null.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\dumb_resample.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\input_aiff.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\input_mod.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\input_mp3.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\input_wav.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\internal.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\mci_device.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\memory_file.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\resampler.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\resource.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\threads.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\timer.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\types.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\utility.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\audiere.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\basic_source.h">
+      <Filter>audiere</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsrc.rc" />
@@ -730,5 +919,13 @@
     <Filter Include="SDL\src\video\dummy">
       <UniqueIdentifier>{03d6d368-94a8-415d-8078-99f193627090}</UniqueIdentifier>
     </Filter>
+    <Filter Include="audiere">
+      <UniqueIdentifier>{7c6608a8-5b33-4d07-8486-45d5651fd333}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="audiere\Makefile.am">
+      <Filter>audiere</Filter>
+    </None>
   </ItemGroup>
 </Project>
