@@ -443,15 +443,6 @@
     <ClCompile Include="audiere\device.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
-    <ClCompile Include="audiere\device_ds.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
-    <ClCompile Include="audiere\device_ds_buffer.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
-    <ClCompile Include="audiere\device_ds_stream.cpp">
-      <Filter>audiere</Filter>
-    </ClCompile>
     <ClCompile Include="audiere\device_mixer.cpp">
       <Filter>audiere</Filter>
     </ClCompile>
@@ -652,6 +643,12 @@
     </ClCompile>
     <ClCompile Include="dumb\src\it\itorder.c">
       <Filter>dumb\src\it</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\mpaudec\bits.c">
+      <Filter>audiere\mpaudec</Filter>
+    </ClCompile>
+    <ClCompile Include="audiere\mpaudec\mpaudec.c">
+      <Filter>audiere\mpaudec</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -872,15 +869,6 @@
     <ClInclude Include="audiere\device.h">
       <Filter>audiere</Filter>
     </ClInclude>
-    <ClInclude Include="audiere\device_ds.h">
-      <Filter>audiere</Filter>
-    </ClInclude>
-    <ClInclude Include="audiere\device_ds_buffer.h">
-      <Filter>audiere</Filter>
-    </ClInclude>
-    <ClInclude Include="audiere\device_ds_stream.h">
-      <Filter>audiere</Filter>
-    </ClInclude>
     <ClInclude Include="audiere\device_mixer.h">
       <Filter>audiere</Filter>
     </ClInclude>
@@ -949,6 +937,18 @@
     </ClInclude>
     <ClInclude Include="dumb\include\internal\it.h">
       <Filter>dumb\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\mpaudec\mpaudectab.h">
+      <Filter>audiere\mpaudec</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\mpaudec\mpegaudio.h">
+      <Filter>audiere\mpaudec</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\mpaudec\internal.h">
+      <Filter>audiere\mpaudec</Filter>
+    </ClInclude>
+    <ClInclude Include="audiere\mpaudec\mpaudec.h">
+      <Filter>audiere\mpaudec</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1056,6 +1056,9 @@
     </Filter>
     <Filter Include="dumb\include\internal">
       <UniqueIdentifier>{132283cc-797a-48fc-a44d-9c44f5517b06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audiere\mpaudec">
+      <UniqueIdentifier>{1794bb0e-b784-4ec2-b592-66eff1b9faac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

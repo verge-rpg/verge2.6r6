@@ -218,10 +218,12 @@ namespace audiere {
         return 0;
       }
 
+      #ifdef HAVE_DSOUND
       if (name == "directsound") {
         TRY_DEVICE(DSAudioDevice);
         return 0;
       }
+      #endif
 
       if (name == "winmm") {
         TRY_DEVICE(MMAudioDevice);

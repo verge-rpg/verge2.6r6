@@ -15,9 +15,6 @@
     <ClCompile Include="audiere\cd_null.cpp" />
     <ClCompile Include="audiere\debug.cpp" />
     <ClCompile Include="audiere\device.cpp" />
-    <ClCompile Include="audiere\device_ds.cpp" />
-    <ClCompile Include="audiere\device_ds_buffer.cpp" />
-    <ClCompile Include="audiere\device_ds_stream.cpp" />
     <ClCompile Include="audiere\device_mixer.cpp" />
     <ClCompile Include="audiere\device_mm.cpp" />
     <ClCompile Include="audiere\device_null.cpp" />
@@ -33,6 +30,8 @@
     <ClCompile Include="audiere\loop_point_source.cpp" />
     <ClCompile Include="audiere\memory_file.cpp" />
     <ClCompile Include="audiere\midi_null.cpp" />
+    <ClCompile Include="audiere\mpaudec\bits.c" />
+    <ClCompile Include="audiere\mpaudec\mpaudec.c" />
     <ClCompile Include="audiere\noise.cpp" />
     <ClCompile Include="audiere\resampler.cpp" />
     <ClCompile Include="audiere\sample_buffer.cpp" />
@@ -252,9 +251,6 @@
     <ClInclude Include="audiere\debug.h" />
     <ClInclude Include="audiere\default_file.h" />
     <ClInclude Include="audiere\device.h" />
-    <ClInclude Include="audiere\device_ds.h" />
-    <ClInclude Include="audiere\device_ds_buffer.h" />
-    <ClInclude Include="audiere\device_ds_stream.h" />
     <ClInclude Include="audiere\device_mixer.h" />
     <ClInclude Include="audiere\device_mm.h" />
     <ClInclude Include="audiere\device_null.h" />
@@ -266,6 +262,10 @@
     <ClInclude Include="audiere\internal.h" />
     <ClInclude Include="audiere\mci_device.h" />
     <ClInclude Include="audiere\memory_file.h" />
+    <ClInclude Include="audiere\mpaudec\internal.h" />
+    <ClInclude Include="audiere\mpaudec\mpaudec.h" />
+    <ClInclude Include="audiere\mpaudec\mpaudectab.h" />
+    <ClInclude Include="audiere\mpaudec\mpegaudio.h" />
     <ClInclude Include="audiere\resampler.h" />
     <ClInclude Include="audiere\resource.h" />
     <ClInclude Include="audiere\threads.h" />
