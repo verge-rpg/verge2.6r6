@@ -42,7 +42,6 @@ namespace Player
         Entity::TweakTileCoords(tx, ty, player.direction);
 
         int e = EntityAt(tx, ty);
-        Entity& q = ents[e];
         if (e!=-1 && !ents[e].adjactivate)
         {
            ExecuteEvent(ents[e].actscript);
